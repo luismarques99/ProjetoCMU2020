@@ -1,0 +1,47 @@
+\documentclass[\main.tex]{subfiles}
+
+\chapter{Introdução}
+
+\section{Âmbito}
+Esto projeto foi realizado na época especial de 2020, dentro do âmbito de
+\acrlong{cmu} da \acrlong{lei} na \acrlong{estg} - P.Porto.
+
+\section{Definição do Problema}
+A atual situação económica e social devido à pandemia COVID-19 forçou a adoção de novas medidas
+e a adaptação de novas rotinas. A utilização de espaços de restauração ficou condicionada com
+novas restrições de limites de ocupação e horários de funcionamento.\\
+\indent Desta forma, torna-se útil pesquisar restaurantes e verificar o cardápio fornecido antes da
+deslocação ao estabelecimento, de modo a evitar que o utilizador se dirija ao local e a comida
+não seja do seu agrado, assim como descobrir novos restaurantes adaptados as necessidades de cada
+cliente.\\
+
+\section{Solução}
+\indent De forma genérica pretende-se o desenvolvimento de uma aplicação para dispositivos móveis
+que melhore a experiência da visita a restaurantes e registe os considerados “preferidos” pelo
+utilizador, que estabelecimentos já frequentou e qual a pontuação fornecida de cumprimento de
+normas de saúde pública relacionadas com o COVID-19.\\
+\indent Deve ser permitido visualizar todos os restaurantes já visitados, os seus favoritos e todos
+em que se pretende efetuar uma refeição considerando a distância do utilizador ao estabelecimento,
+a classificação atribuída pelo utilizador (ou pela comunidade caso não exista uma classificação
+específica do utilizador) e a frequência de utilização (número de vezes que o utilizador realizou
+refeições nesse estabelecimento). A aplicação deve automaticamente detetar quando um utilizador se
+encontra perto de um restaurante favorito, e automaticamente lançar uma notificação sugerindo uma
+refeição nesse estabelecimento, mesmo quando a aplicação se encontrar em background.\\
+\indent Para aquisição de informação de contexto sobre restaurantes deve ser considerada, entre
+outras, a API Zomato. Outras APIs podem igualmente ser usadas em substituição (ex: google places)
+desde que consigam dar resposta ao problema. Informação proveniente de outras fontes de dados ou
+webservices podem também ser consideradas para enriquecimento da aplicação (ex: navegação,
+meteorologia, etc).\\
+\indent O histórico de refeições deve estar disponível para o utilizador e ser consultado pelo
+utilizador da aplicação. Cada histórico deve apresentar de forma breve informação sobre o
+estabelecimento, e outras informações relevantes como o tipo de refeição efetuada mais
+frequentemente, distância média percorrida para que o utilizador se desloque.\\
+\indent A pontuação fornecida (de 1 a 5) deve poder ser partilhada de forma anónima com todos os
+utilizadores da aplicação a desenvolver (considere o uso de uma base de dados como firebase para
+guardar as pontuações de cada restaurante). Um utilizador só pode pontuar um determinado
+restaurante quando se encontrar perto dele (considerar um raio ou tolerância entre as coordenadas
+do restaurante e a posição do utilizador).\\
+
+\section{Objetivos}
+Descrever objetivos do projeto.
+\newpage

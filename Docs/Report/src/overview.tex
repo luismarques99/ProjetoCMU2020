@@ -1,0 +1,75 @@
+\documentclass[\main.tex]{subfiles}
+
+\chapter{Overview}
+This chapter was planned to be an overview of the project so that each component
+described here is separated by a page break to maintain a good consistency along the
+whole document.
+\newpage
+\section{Web Application}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\linewidth]{../private_assets/UML_UseCase_WebApp.png}
+\caption{Web application Use Case diagram}
+\end{figure}
+Web application is intended to be simple and easy to use, so one of the main features
+must be its responsiveness and usability. The user must be able to register with a few
+steps as well as to login into the \gls{app}. Once the login is completed the user
+can access its dashboard with all the passwords saved in its account. If the user so
+desires it can select a group where many passwords are stored. Each group has its own
+domain, promoting a better understanding and organization for the user to freely move
+throughout the \gls{app}. Inside a group, it will be able to view all passwords in it
+and apply certain operations, such as editing a group, deleting or creating a new one.
+Clicking on a password box will show its information and able the opportunity to
+ingress to the corresponding end-point. The same group operations can be apllied to
+the passwords.
+
+\newpage
+\section{Web API}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\linewidth]{../private_assets/UML_WebAPIArchitecture.png}
+\caption{Web \acrshort{api} architecture}
+\end{figure}
+To begin, a \acrshort{http} request is made through an \acrshort{api} client such as
+our web \gls{app}. The request is managed by a Controller and the access to the
+\acrfull{db} is made by \acrshort{db} Context. To make the communication between
+these components easier there is a Repository which allows read and write actions
+between them. The main goal of the web \acrshort{api} is to be quite safe as we are
+dealing with our customers passwords, so that each password needs to be encrypted
+before going into the \acrshort{db}.\\
+\indent \acrlong{db} information is defined by the Model's. To make everything even
+more secure and ensure that there is no unintentional leak of information each Model
+is mapped to a \acrfull{dto} to send in the \acrshort{http} response in
+\acrshort{json} format
+
+\newpage
+\section{Mockups}
+\begin{figure}[ht]
+\centering
+\includegraphics[height=7cm]{../private_assets/Mockup_SignIn.png}
+\caption{Register a new user}
+\vspace*{2cm}
+\includegraphics[height=7cm]{../private_assets/Mockup_Login.png}
+\caption{User login}
+\end{figure}
+\newpage
+\vspace*{1cm}
+\begin{figure}[ht]
+\centering
+\includegraphics[height=7cm]{../private_assets/Mockup_Home.png}
+\caption{User's dashboard}
+\vspace*{2cm}
+\includegraphics[height=7cm]{../private_assets/Mockup_NewPassword.png}
+\caption{Add a new password}
+\end{figure}
+\newpage
+\vspace*{1cm}
+\begin{figure}[ht]
+\centering
+\includegraphics[height=7cm]{../private_assets/Mockup_Password.png}
+\caption{Password details}
+\vspace*{2cm}
+\includegraphics[height=7cm]{../private_assets/Mockup_NewGroup.png}
+\caption{User's groups of passwords}
+\end{figure}
+\newpage

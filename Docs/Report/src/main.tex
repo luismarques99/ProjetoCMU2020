@@ -1,0 +1,155 @@
+\documentclass[a4paper, 11pt]{report}
+
+% Extra characters
+\usepackage[utf8]{inputenc}
+
+% Subfiles
+\usepackage{subfiles}
+
+% Document format
+\usepackage[a4paper, left=3cm, right=2.5cm, top=3cm, bottom=3cm]{geometry}
+% Set the header height
+\setlength{\headheight}{14pt}
+
+% Line spacing
+\usepackage[onehalfspacing]{setspace}
+
+% Language used
+\usepackage[portuguese]{babel}
+
+% Font
+\usepackage[default]{cantarell} %% Use option "defaultsans" to use cantarell as sans serif only
+\usepackage[T1]{fontenc}
+
+% Figures
+\usepackage{graphicx}
+\usepackage{wrapfig}
+
+% Tables
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage[table, xcdraw]{xcolor}
+
+% Improve justification document wide
+\usepackage{microtype}
+
+% Compact lists
+\usepackage{enumitem}
+ 
+% Customize the page layout of your LaTeX documents
+\usepackage{fancyhdr}
+
+% Paragraph indentation
+\usepackage{indentfirst}
+% Set the indentation length
+\setlength\parindent{1.25cm}
+% Set the number of depth of sections
+\setcounter{secnumdepth}{5}
+
+% Glossary and acronyms
+\usepackage[acronym, nogroupskip, toc]{glossaries}
+
+% Bibliography
+% \usepackage{biblatex}
+% \addbibresource{libs/references.bib}
+
+% Appendices
+\usepackage[toc,page]{appendix}
+
+% Document bookmarks
+\usepackage{pdfpages}
+\usepackage[
+	linktocpage=true,
+	colorlinks=true,
+	allcolors=cyan,
+	bookmarks=true,
+	bookmarksopen=true,
+	bookmarksnumbered=true,
+	pdfpagelabels=true,
+	pdftitle={Report - Pass Vault},
+	pdfauthor={Luís Marques & Vasco Neves}
+]{hyperref}
+\usepackage{bookmark}
+
+\glsdisablehyper
+\makenoidxglossaries
+\input{libs/abbreviations.tex}
+\input{libs/glossary.tex}
+
+
+\begin{document}
+
+\pagenumbering{gobble}
+
+% Cover
+\subfile{cover.tex}
+
+% Blank page
+\subfile{blank_page.tex}
+
+% Back cover
+\subfile{back_cover.tex}
+
+% Blank page
+\subfile{blank_page.tex}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyfoot[R]{\thepage}
+\pagenumbering{roman}
+
+% Version history
+\subfile{version_history.tex}
+
+% Blank page
+\subfile{blank_page.tex}
+
+% Table of contents
+\tableofcontents
+\newpage
+
+% Blank page
+\subfile{blank_page.tex}
+
+% List of figures
+\listoffigures
+\newpage
+
+% Blank page
+\subfile{blank_page.tex}
+
+% List of tables
+\listoftables
+\newpage
+
+% Blank page
+\subfile{blank_page.tex}
+
+% Glossary
+\printnoidxglossary
+\newpage
+
+% Blank page
+\subfile{blank_page.tex}
+
+% Abbreviations
+\printnoidxglossary[type=\acronymtype, title={Abreviaturas}]
+\newpage
+
+% Blank page
+\subfile{blank_page.tex}
+
+\pagenumbering{arabic}
+
+% 1. Introduction
+\subfile{introduction.tex}
+
+% Blank page
+\subfile{blank_page.tex}
+
+% References
+% \printbibliography[title={Referências}]
+\subfile{libs/references.tex}
+
+\end{document}
