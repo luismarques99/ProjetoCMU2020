@@ -32,7 +32,7 @@ Project carried out in 2020 special season withint the scope of ***Computação 
 
 ### Mobile App
 
-- [JDK 11](https://jdk.java.net/java-se-ri/11) - Java Development Kit 11
+- [Java](https://java.com/) - Programming language
 - [Gradle](https://gradle.org/) - Dependency control
 - [Android Studio](https://developer.android.com/studio) - IDE
 
