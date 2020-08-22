@@ -15,6 +15,14 @@
 
 Project carried out in 2020 special season withint the scope of ***Computação Móvel e Ubíqua***  from ***Licenciatura em Engenharia Informática*** at ***Escola Superior de Tecnologia e Gestão - P.Porto***.
 
+## Documents
+
+See all the documents in [`Docs`](Docs).
+
+## Web App
+
+Go to [`App`](App) for more information.
+
 ## Built with
 
 ### Documentation
