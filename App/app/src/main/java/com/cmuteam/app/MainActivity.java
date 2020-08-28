@@ -54,7 +54,8 @@ public class MainActivity extends Activity implements
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser!=null){
-            //Se já estiver logado nao vale a pena efetuar o login de novo portanto criar Intent
+            Intent preventDoubleLoginIntent=new Intent(MainActivity.this,RestaurantsListActivity.class);
+            startActivity(preventDoubleLoginIntent);
         }
     }
 
@@ -73,7 +74,7 @@ public class MainActivity extends Activity implements
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
-                            Intent intent=new Intent(MainActivity.this,RestaurantsList.class);
+                            Intent intent=new Intent(MainActivity.this, RestaurantsListActivity.class);
                             startActivity(intent);
 
                         } else {
