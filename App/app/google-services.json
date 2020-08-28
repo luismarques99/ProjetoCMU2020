@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "586269191607",
+    "firebase_url": "https://projetocmu2020.firebaseio.com",
+    "project_id": "projetocmu2020",
+    "storage_bucket": "projetocmu2020.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586269191607:android:08c4f63ad6b9c63061cc32",
+        "android_client_info": {
+          "package_name": "com.cmuteam.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "586269191607-k9r52fcaj6fibkmpfuu36gctvjgnc8lt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cmuteam.app",
+            "certificate_hash": "8379529b74c5d3d2ff64c296656b0fdc65126ac2"
+          }
+        },
+        {
+          "client_id": "586269191607-vprmre1jiluivqkvr2of5o3gni4min3m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMLld5lI4brPOLSYd6UgBiCHmHjuflLEY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "586269191607-vprmre1jiluivqkvr2of5o3gni4min3m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".RegisterActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbarRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#424242"
@@ -16,30 +16,25 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         />
 
-   <EditText
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_marginTop="50dp"
-       android:id="@+id/email"
-       android:text="Email"></EditText>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:id="@+id/password"></EditText>
+        android:layout_marginTop="50dp"
+        android:id="@+id/pretendedEmail"
+        android:hint="Email"></EditText>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/pretendedPassword"
+        android:hint="Password"></EditText>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Login"
         android:layout_marginTop="40dp"
-        android:id="@+id/loginButton"></Button>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/registerButton"
-        android:layout_marginTop="40dp"
-        android:text="Don´t have an account?Register here"></Button>
+        android:text="Register"
+        android:id="@+id/registerButton">
+    </Button>
+
 
 </LinearLayout>
