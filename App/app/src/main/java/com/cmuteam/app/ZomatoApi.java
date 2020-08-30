@@ -1,15 +1,16 @@
 package com.cmuteam.app;
 
-import java.util.List;
+import com.cmuteam.app.Models.ApiResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Query;
 
-public interface ZomatoApi {
 
-    @GET("establishments")
-    Call<List<Establishment>> getNearbyRestaurants(@Header("user-key") String userKey, @Query("lat")Double lat,
-                                                   @Query("lon")Double lon);
+public interface ZomatoApi {
+    @GET("search")
+    Call<ApiResponse> getNearbyRestaurants(@Query("lat") double lat, @Query("lon") double lon,
+                                           @Query("count") int count, @Query("radius") double radius,@Query("sort")String sort,@Query("order")String order
+                                           ,@Header("user-key") String apiKey);
 }
