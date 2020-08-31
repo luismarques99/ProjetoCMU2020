@@ -37,8 +37,9 @@ public class RestaurantsList extends Fragment {
         super.onCreate(savedInstanceState);
         context = getContext();
         mAuth = FirebaseAuth.getInstance();
-        restaurantsList= new ArrayList<>(50);
-        getApi().getNearbyRestaurants("75be9f9e2239fe637bf9cb1b46979d91",41.12108,-8.615718100000002)
+        restaurantsList = new ArrayList<>();
+
+        getApi().getNearbyRestaurants("75be9f9e2239fe637bf9cb1b46979d91", 311)
                 .enqueue(new Callback<List<Establishment>>() {
                     @Override
                     public void onResponse(Call<List<Establishment>> call, Response<List<Establishment>> response) {
@@ -55,7 +56,7 @@ public class RestaurantsList extends Fragment {
                     @Override
                     public void onFailure(Call<List<Establishment>> call, Throwable t) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                        builder.setMessage("Couldn´t find any nearby restaurants");
+                        builder.setMessage("Couldn't find any nearby restaurants");
                         AlertDialog mDialog = builder.create();
                         mDialog.show();
 
@@ -65,8 +66,9 @@ public class RestaurantsList extends Fragment {
     }
 
 
-    @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View mContentView = inflater.inflate(R.layout.restaurants_list, container,false);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View mContentView = inflater.inflate(R.layout.restaurants_list, container, false);
         mRecyclerView = mContentView.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContentView.getContext()));
         mRecyclerView.setAdapter(mAdapter);
@@ -80,24 +82,25 @@ public class RestaurantsList extends Fragment {
 
     }
 
-    @Override public void onAttach(Activity activity) {
+    @Override
+    public void onAttach(Activity activity) {
         super.onAttach(activity);
-        try{
-            listener= (OnRestaurantClickedListener) activity;
+        try {
+            listener = (OnRestaurantClickedListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString() + " must implement OnButtonClicked");
         }
     }
 
-    private Retrofit getRetrofit(){
+    private Retrofit getRetrofit() {
         return new Retrofit.Builder()
-                .baseUrl("https://developers.zomato.com/api/")
+                .baseUrl("https://developers.zomato.com/api/v2.1/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
 
-    private ZomatoApi getApi(){
-        return  getRetrofit().create(ZomatoApi.class);
+    private ZomatoApi getApi() {
+        return getRetrofit().create(ZomatoApi.class);
     }
 }
 

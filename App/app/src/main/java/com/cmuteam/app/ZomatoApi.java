@@ -10,6 +10,6 @@ import retrofit2.http.Query;
 public interface ZomatoApi {
 
     @GET("establishments")
-    Call<List<Establishment>> getNearbyRestaurants(@Header("user-key") String userKey, @Query("lat")Double lat,
-                                                   @Query("lon")Double lon);
+    Call<List<Establishment>> getNearbyRestaurants(@Header("user-key") String userKey, @Query("lat")Double lat, @Query("lon")Double lon);
+    Call<List<Establishment>> getNearbyRestaurants(@Header("user-key") String userKey, @Query("city_id")int city_id);
 }

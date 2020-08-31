@@ -37,13 +37,14 @@ public class MainActivity extends Activity implements
         mPasswordField = findViewById(R.id.password);
 
         // Buttons
-        findViewById(R.id.loginButton).setOnClickListener(this);
-        findViewById(R.id.registerButton).setOnClickListener(this);
+        findViewById(R.id.login_button).setOnClickListener(this);
+        findViewById(R.id.register_button).setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
 
-        Toolbar myToolbar=findViewById(R.id.toolbar);
-        //setSupportActionBar(myToolbar);
+//        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(myToolbar);
+
         //getSupportActionBar().setTitle("Lista de Contactos");
 
     }
@@ -53,12 +54,11 @@ public class MainActivity extends Activity implements
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser!=null){
-            Intent preventDoubleLoginIntent=new Intent(MainActivity.this,RestaurantsListActivity.class);
+        if (currentUser != null) {
+            Intent preventDoubleLoginIntent = new Intent(MainActivity.this, RestaurantsListActivity.class);
             startActivity(preventDoubleLoginIntent);
         }
     }
-
 
 
     private void signIn(String email, String password) {
@@ -74,7 +74,7 @@ public class MainActivity extends Activity implements
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
-                            Intent intent=new Intent(MainActivity.this, RestaurantsListActivity.class);
+                            Intent intent = new Intent(MainActivity.this, RestaurantsListActivity.class);
                             startActivity(intent);
 
                         } else {
@@ -115,14 +115,13 @@ public class MainActivity extends Activity implements
     }
 
 
-
     @Override
-    public void onClick(View v) {
-        int i = v.getId();
-        if (i == R.id.loginButton) {
+    public void onClick(View view) {
+        int i = view.getId();
+        if (i == R.id.login_button) {
             signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
-        }else if (i == R.id.registerButton) {
-            Intent registerIntent=new Intent(MainActivity.this,RegisterActivity.class);
+        } else if (i == R.id.register_button) {
+            Intent registerIntent = new Intent(MainActivity.this, RegisterActivity.class);
             startActivity(registerIntent);
         }
     }

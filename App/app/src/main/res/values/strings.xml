@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">App</string>
+    <string name="app_name">Click2Eat</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="password_confirmation">Confirm password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="register_message">New to Click2Eat? Register now.</string>
+    <string name="create_account_message">Create your account.</string>
+    <string name="letters_logo_description">Click2Eat letters logo</string>
 </resources>

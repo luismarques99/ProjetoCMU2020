@@ -17,11 +17,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "EmailPassword";
 
-    private EditText mEmailField;
-    private EditText mPasswordField;
+    //EditTexts
+    private EditText mEmailField = findViewById(R.id.email);
+    private EditText mPasswordField = findViewById(R.id.password);
+    private EditText mPasswordConfirmationField = findViewById(R.id.password_confirmation);
     private FirebaseAuth mAuth;
 
     @Override
@@ -29,20 +33,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        //EditTexts
-        mEmailField = findViewById(R.id.pretendedEmail);
-        mPasswordField = findViewById(R.id.pretendedPassword);
-
         //Buttons
-        findViewById(R.id.registerButton).setOnClickListener(this);
+        findViewById(R.id.register_button).setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
 
 
-        androidx.appcompat.widget.Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbarRegister);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setTitle("Create account");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // go to previous activity
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true); // go to previous activity
     }
 
     private void createAccount(String email, String password) {
@@ -57,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
-                            Intent intent=new Intent(RegisterActivity.this, RestaurantsListActivity.class);
+                            Intent intent = new Intent(RegisterActivity.this, RestaurantsListActivity.class);
                             startActivity(intent);
 
 
@@ -90,13 +89,26 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             mPasswordField.setError(null);
         }
 
+        String passwordConfirmation = mPasswordConfirmationField.getText().toString();
+        if (TextUtils.isEmpty(passwordConfirmation)) {
+            mPasswordConfirmationField.setError("Required.");
+            valid = false;
+        } else {
+            mPasswordConfirmationField.setError(null);
+        }
+
+        if (!password.equals(passwordConfirmation)) {
+            displayPasswordsMustMatchToast();
+            valid = false;
+        }
+
         return valid;
     }
 
     @Override
     public void onClick(View view) {
         int i = view.getId();
-        if (i == R.id.registerButton) {
+        if (i == R.id.register_button) {
             createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
         }
 
@@ -106,5 +118,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    private void displayPasswordsMustMatchToast() {
+        String text = "Passwords must match!";
+        Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
     }
 }

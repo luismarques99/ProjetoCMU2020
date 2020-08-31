@@ -1,40 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingStart="30dp"
+    android:paddingEnd="30dp"
+    android:background="@color/colorPrimaryLight"
     android:orientation="vertical"
     tools:context=".RegisterActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarRegister"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#424242"
+        android:layout_height="80dp"
+        android:background="@color/colorPrimaryLight"
         android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        />
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <!-- 150px x 35.8px -->
+        <ImageView
+            android:id="@+id/letters_light_theme"
+            android:layout_width="170dp"
+            android:layout_height="40dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/letters_light_theme"
+            android:contentDescription="@string/letters_logo_description" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="100dp"
+        android:text="@string/create_account_message"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="17sp"
+        android:textStyle="bold" />
 
     <EditText
+        android:id="@+id/email"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:id="@+id/pretendedEmail"
-        android:hint="Email"></EditText>
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:autofillHints="email"
+        android:background="@drawable/rounded_corners_item"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp" />
+
     <EditText
+        android:id="@+id/password"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/pretendedPassword"
-        android:hint="Password"></EditText>
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:autofillHints="password"
+        android:background="@drawable/rounded_corners_item"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp" />
+
+    <EditText
+        android:id="@+id/password_confirmation"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:autofillHints="password"
+        android:background="@drawable/rounded_corners_item"
+        android:hint="@string/password_confirmation"
+        android:inputType="textPassword"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp" />
+
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/register_button"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
-        android:text="Register"
-        android:id="@+id/registerButton">
-    </Button>
-
+        android:layout_marginTop="30dp"
+        android:background="@drawable/login_button"
+        android:text="@string/register"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 </LinearLayout>
