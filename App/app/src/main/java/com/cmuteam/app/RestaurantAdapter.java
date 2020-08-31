@@ -7,13 +7,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cmuteam.app.Models.Restaurant;
+import com.cmuteam.app.Models.Restaurant_;
+import com.cmuteam.app.Models.UserRating;
+
 import java.util.List;
 
 public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder> {
     private Context mContext;
-    private List<Establishment> mRestaurants;
+    private List<Restaurant_> mRestaurants;
 
-    public RestaurantAdapter(Context context, List<Establishment> restaurants) {
+    public RestaurantAdapter(Context context, List<Restaurant_> restaurants) {
         mRestaurants = restaurants;
         mContext = context;
     }
@@ -34,9 +38,13 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
     @Override
     public void onBindViewHolder(RestaurantViewHolder viewHolder, final int position) {
         // Get the data model based on position
-        final Establishment restaurant = mRestaurants.get(position);
+        final Restaurant_ restaurant = mRestaurants.get(position);
         final TextView name=viewHolder.nameTextView;
         name.setText(restaurant.getName());
+        final TextView rating=viewHolder.ratingTextView;
+        rating.setText((restaurant.getUserRating().getAggregateRating()));
+        final TextView distance= viewHolder.distanceTextView;
+        distance.setText(String.valueOf(restaurant.getDistance())+" Km");
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,10 +61,14 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
     public class RestaurantViewHolder extends RecyclerView.ViewHolder {
         public TextView nameTextView;
+        public TextView ratingTextView;
+        public TextView distanceTextView;
 
         public RestaurantViewHolder(View itemView) {
             super(itemView);
             nameTextView = itemView.findViewById(R.id.restaurantName);
+            ratingTextView=itemView.findViewById(R.id.restaurantRating);
+            distanceTextView=itemView.findViewById(R.id.restaurantDistance);
 
         }
 
