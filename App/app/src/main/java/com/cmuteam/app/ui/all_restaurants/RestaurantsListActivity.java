@@ -1,28 +1,19 @@
-package com.cmuteam.app;
+package com.cmuteam.app.ui.all_restaurants;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import com.cmuteam.app.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -48,7 +39,7 @@ public class RestaurantsListActivity extends AppCompatActivity implements OnRest
         setSupportActionBar(myToolbar);
         getSupportActionBar().setTitle("Nearby Restaurants");
 
-        RestaurantsList rList = new RestaurantsList();
+        RestaurantsListFragment rList = new RestaurantsListFragment();
         Bundle args = new Bundle();
         rList.setArguments(args);
 

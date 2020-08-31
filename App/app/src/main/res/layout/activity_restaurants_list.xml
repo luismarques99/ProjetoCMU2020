@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".RestaurantsListActivity">
+    tools:context=".ui.all_restaurants.RestaurantsListActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarRestaurantsList"

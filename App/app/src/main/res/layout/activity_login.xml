@@ -9,27 +9,12 @@
     android:orientation="vertical"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
-    tools:context=".MainActivity">
+    tools:context="LoginActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <include
+        layout="@layout/app_bar_main"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@color/colorPrimaryLight"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-        <!-- 150px x 35.8px -->
-        <ImageView
-            android:id="@+id/letters_light_theme"
-            android:layout_width="170dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_horizontal"
-            android:adjustViewBounds="true"
-            android:background="@drawable/letters_light_theme"
-            android:contentDescription="@string/letters_logo_description" />
-
-    </androidx.appcompat.widget.Toolbar>
+        android:layout_height="match_parent" />
 
     <EditText
         android:id="@+id/email"

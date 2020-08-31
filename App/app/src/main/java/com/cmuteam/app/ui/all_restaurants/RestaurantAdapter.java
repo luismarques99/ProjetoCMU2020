@@ -1,4 +1,4 @@
-package com.cmuteam.app;
+package com.cmuteam.app.ui.all_restaurants;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,9 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.cmuteam.app.Models.Restaurant;
 import com.cmuteam.app.Models.Restaurant_;
-import com.cmuteam.app.Models.UserRating;
+import com.cmuteam.app.R;
 
 import java.util.List;
 
@@ -48,7 +47,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RestaurantsList.listener.onRestaurantClicked(position);
+                RestaurantsListFragment.listener.onRestaurantClicked(position);
             }
         });
     }
