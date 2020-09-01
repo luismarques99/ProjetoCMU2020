@@ -1,0 +1,27 @@
+package com.click2eat.app.models;
+
+
+public class HasMenuStatus {
+
+    private Integer delivery;
+    private Integer takeaway;
+
+
+    public Integer getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(Integer delivery) {
+        this.delivery = delivery;
+    }
+
+    public Integer getTakeaway() {
+        return takeaway;
+    }
+
+    public void setTakeaway(Integer takeaway) {
+        this.takeaway = takeaway;
+    }
+
+
+}

@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:586269191607:android:08c4f63ad6b9c63061cc32",
         "android_client_info": {
-          "package_name": "com.cmuteam.app"
+          "package_name": "com.click2eat.app"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "586269191607-k9r52fcaj6fibkmpfuu36gctvjgnc8lt.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.cmuteam.app",
+            "package_name": "com.click2eat.app",
             "certificate_hash": "8379529b74c5d3d2ff64c296656b0fdc65126ac2"
           }
         },
