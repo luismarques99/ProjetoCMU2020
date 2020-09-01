@@ -3,23 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_all_restaurants">
+    app:startDestination="@+id/navigation_live">
 
     <fragment
-        android:id="@+id/nav_all_restaurants"
-        android:name="com.cmuteam.app.ui.all_restaurants.RestaurantsListFragment"
-        android:label="@string/menu_all_restaurants"
-        tools:layout="@layout/fragment_all_restaurants" />
+        android:id="@+id/navigation_live"
+        android:name="com.click2eat.app.ui.live.LiveFragment"
+        android:label="@string/title_live"
+        tools:layout="@layout/fragment_live" />
 
     <fragment
-        android:id="@+id/nav_visited"
-        android:name="com.cmuteam.app.ui.visited.VsitedFragment"
-        android:label="@string/menu_visited"
+        android:id="@+id/navigation_visited"
+        android:name="com.click2eat.app.ui.visited.VisitedFragment"
+        android:label="@string/title_visited"
         tools:layout="@layout/fragment_visited" />
 
     <fragment
-        android:id="@+id/nav_favourites"
-        android:name="com.cmuteam.app.ui.favourites.FavouritesFragment"
-        android:label="@string/menu_favourites"
-        tools:layout="@layout/fragment_favourites" />
+        android:id="@+id/navigation_favorites"
+        android:name="com.click2eat.app.ui.favorites.FavoritesFragment"
+        android:label="@string/title_favorites"
+        tools:layout="@layout/fragment_favorites" />
+
+    <fragment
+        android:id="@+id/navigation_wishlist"
+        android:name="com.click2eat.app.ui.wishlist.WishlistFragment"
+        android:label="@string/title_wishlist"
+        tools:layout="@layout/fragment_wishlist" />
 </navigation>

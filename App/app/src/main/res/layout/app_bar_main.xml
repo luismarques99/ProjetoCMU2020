@@ -1,39 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="70dp"
     android:background="@color/colorPrimaryLight"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:background="@color/colorPrimaryLight"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            <!-- 150px x 35.8px -->
+            <ImageView
+                android:id="@+id/logo_light_theme"
+                android:layout_width="30dp"
+                android:layout_height="33dp"
+                android:layout_gravity="center_vertical"
+                android:adjustViewBounds="true"
+                android:background="@drawable/logo_dark_theme"
+                android:contentDescription="@string/letters_logo_description" />
+
             <ImageView
                 android:id="@+id/letters_light_theme"
-                android:layout_width="170dp"
-                android:layout_height="40dp"
+                android:layout_width="100dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="7dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/letters_light_theme"
                 android:contentDescription="@string/letters_logo_description" />
 
-        </androidx.appcompat.widget.Toolbar>
+        </LinearLayout>
 
-    </com.google.android.material.appbar.AppBarLayout>
 
-<!--    <include layout="@layout/content_main" />-->
+        <ImageButton
+            android:id="@+id/profile_button"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:adjustViewBounds="true"
+            android:background="@drawable/ic_profile_picture" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </RelativeLayout>
+
+</androidx.appcompat.widget.Toolbar>

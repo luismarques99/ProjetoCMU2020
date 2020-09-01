@@ -1,5 +1,12 @@
 <resources>
+    // App
     <string name="app_name">Click2Eat</string>
+    <string name="title_live">Live</string>
+    <string name="title_visited">Visited</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="title_wishlist">Wishlist</string>
+
+    // Fields
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="password_confirmation">Confirm password</string>
@@ -7,12 +14,11 @@
     <string name="register">Register</string>
     <string name="register_message">New to Click2Eat? Register now.</string>
     <string name="create_account_message">Create your account.</string>
+
+    // Logos
     <string name="letters_logo_description">Click2Eat letters logo</string>
     <string name="logo_description">Click2Eat logo</string>
 
-    <string name="menu_all_restaurants">All restaurants</string>
-    <string name="menu_visited">Visited</string>
-    <string name="menu_favourites">Favourites</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -20,6 +26,6 @@
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="invalid_password">Password must be > 5 characters</string>
     <string name="login_failed">"Login failed"</string>
 </resources>
