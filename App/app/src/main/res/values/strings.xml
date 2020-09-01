@@ -13,6 +13,8 @@
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="register_message">New to Click2Eat? Register now.</string>
+    <string name="create_account_title">Register to start using the app</string>
+    <string name="create_account_description">"One more step and it's done! We also hate paperwork."</string>
     <string name="create_account_message">Create your account.</string>
 
     // Logos
