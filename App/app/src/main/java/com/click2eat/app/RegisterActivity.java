@@ -45,9 +45,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         mAuth = FirebaseAuth.getInstance();
 
 
-//        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(myToolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // go to previous activity
+        Toolbar toolbar = findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void createAccount(String email, String password) {
