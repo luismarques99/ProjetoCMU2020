@@ -12,8 +12,8 @@
 //import androidx.recyclerview.widget.LinearLayoutManager;
 //import androidx.recyclerview.widget.RecyclerView;
 //
-//import com.cmuteam.app.Models.TestRestaurant;
-//import com.cmuteam.app.R;
+//import com.click2eat.app.TestRestaurant;
+//import com.click2eat.app.R;
 //import com.google.firebase.auth.FirebaseAuth;
 //
 //import java.util.ArrayList;

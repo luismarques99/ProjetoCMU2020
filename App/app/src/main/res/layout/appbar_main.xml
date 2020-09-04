@@ -32,6 +32,8 @@
                 android:background="@drawable/letters_light_theme"
                 android:contentDescription="@string/letters_logo_description" />
 
+
+
         </LinearLayout>
 
 

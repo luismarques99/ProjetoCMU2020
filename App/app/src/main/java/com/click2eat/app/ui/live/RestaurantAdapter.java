@@ -8,8 +8,8 @@
 //
 //import androidx.recyclerview.widget.RecyclerView;
 //
-//import com.cmuteam.app.Models.Restaurant_;
-//import com.cmuteam.app.R;
+//import com.click2eat.app.models.Restaurant_;
+//import com.click2eat.app.R;
 //
 //import java.util.List;
 //
