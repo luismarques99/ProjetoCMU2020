@@ -6,16 +6,22 @@
     app:startDestination="@+id/navigation_live">
 
     <fragment
-        android:id="@+id/navigation_live"
-        android:name="com.click2eat.app.ui.live.LiveFragment"
-        android:label="@string/title_live"
-        tools:layout="@layout/fragment_live" />
+        android:id="@+id/navigation_search"
+        android:name="com.click2eat.app.ui.search.SearchFragment"
+        android:label="@string/title_search"
+        tools:layout="@layout/fragment_search" />
 
     <fragment
         android:id="@+id/navigation_visited"
         android:name="com.click2eat.app.ui.visited.VisitedFragment"
         android:label="@string/title_visited"
         tools:layout="@layout/fragment_visited" />
+
+    <fragment
+        android:id="@+id/navigation_live"
+        android:name="com.click2eat.app.ui.live.LiveFragment"
+        android:label="@string/title_live"
+        tools:layout="@layout/fragment_live" />
 
     <fragment
         android:id="@+id/navigation_favorites"

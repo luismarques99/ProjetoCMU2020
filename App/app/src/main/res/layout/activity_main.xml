@@ -9,16 +9,9 @@
 
     <include
         android:id="@+id/app_bar"
-        layout="@layout/app_bar_main"
+        layout="@layout/appbar_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/logout_button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@drawable/ic_menu_logout"
-        />
 
     <fragment
         android:id="@+id/nav_host_fragment"
