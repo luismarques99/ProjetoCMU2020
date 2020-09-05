@@ -25,6 +25,9 @@
     <string name="letters_logo_description">Click2Eat letters logo</string>
     <string name="logo_description">Click2Eat logo</string>
 
+    // API
+    <string name="user_key">75be9f9e2239fe637bf9cb1b46979d91</string>
+
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
