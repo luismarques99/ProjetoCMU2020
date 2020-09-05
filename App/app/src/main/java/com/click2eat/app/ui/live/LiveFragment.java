@@ -163,7 +163,7 @@ public class LiveFragment extends Fragment {
             @Override
             public void onSuccess(final Location location) {
                 if (location != null) {
-                    getApi().getNearbyRestaurants(41.121052, -8.615629, 20, 10000, "rating", "desc", "75be9f9e2239fe637bf9cb1b46979d91")
+                    getApi().getNearbyRestaurants(location.getLatitude(), location.getLongitude(), 20, 10000, "rating", "desc", "75be9f9e2239fe637bf9cb1b46979d91")
                             .enqueue(new Callback<SearchResponse>() {
                                 @Override
                                 public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
