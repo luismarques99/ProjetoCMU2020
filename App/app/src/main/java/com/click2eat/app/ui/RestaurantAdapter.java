@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
     private List<Restaurant_> mRestaurants;
     private Activity act;
     private String currentUserId;
+    private View rView;
 
     public RestaurantAdapter(Context context, List<Restaurant_> restaurants, Activity activity) {
         mRestaurants = restaurants;
@@ -37,7 +39,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate layout
-        View rView = inflater.inflate(R.layout.item_restaurant, parent, false);
+        rView = inflater.inflate(R.layout.item_restaurant, parent, false);
 
         // Return a new holder instance
         return new RestaurantViewHolder(rView);
@@ -45,6 +47,13 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
     @Override
     public void onBindViewHolder(RestaurantViewHolder viewHolder, final int position) {
+//        if (position == mRestaurants.size() - 1) {
+//            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+//                    LinearLayout.LayoutParams.WRAP_CONTENT);
+//            params.setMargins(0,20,0,20);
+//            rView.setLayoutParams(params);
+//        }
+
         // Get the data model based on position
         final Activity activity = act;
 
@@ -116,11 +125,11 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 //    private boolean isInWishlist(int id){
 //    }
 
-    private void addToWishlist(){
+    private void addToWishlist() {
         Toast.makeText(mContext, "Added to wishlist", Toast.LENGTH_SHORT).show();
     }
 
-    private void removeFromWishlist(){
+    private void removeFromWishlist() {
         Toast.makeText(mContext, "Removed from wishlist", Toast.LENGTH_SHORT).show();
     }
 
@@ -128,11 +137,11 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 //    private boolean isInFavorites(int id){
 //    }
 
-    private void addToFavorites(){
+    private void addToFavorites() {
         Toast.makeText(mContext, "Added to favorites", Toast.LENGTH_SHORT).show();
     }
 
-    private void removeFromFavorites(){
+    private void removeFromFavorites() {
         Toast.makeText(mContext, "Removed from favorites", Toast.LENGTH_SHORT).show();
     }
 }

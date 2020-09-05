@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="140dp"
     android:layout_gravity="center_vertical"
-    android:layout_marginBottom="20dp"
+    android:layout_marginTop="20dp"
     android:background="@drawable/item_list"
     android:orientation="vertical"
     android:padding="10dp"
