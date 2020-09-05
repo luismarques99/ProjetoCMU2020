@@ -1,4 +1,4 @@
-package com.click2eat.app;
+package com.click2eat.app.ui;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -13,6 +13,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 
+import com.click2eat.app.R;
+import com.click2eat.app.ZomatoApi;
 import com.click2eat.app.models.Restaurant_;
 
 import java.util.List;

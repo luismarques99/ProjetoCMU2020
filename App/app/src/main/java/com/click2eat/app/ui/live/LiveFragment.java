@@ -5,29 +5,24 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.click2eat.app.R;
-import com.click2eat.app.RestaurantAdapter;
+import com.click2eat.app.ui.OnRestaurantClickedListener;
+import com.click2eat.app.ui.RestaurantAdapter;
 import com.click2eat.app.ZomatoApi;
 import com.click2eat.app.models.Restaurant;
 import com.click2eat.app.models.Restaurant_;
@@ -95,17 +90,6 @@ public class LiveFragment extends Fragment {
         mRecyclerView = mContentView.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContentView.getContext()));
         mRecyclerView.setAdapter(mAdapter);
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(context, DividerItemDecoration.VERTICAL);
-        mRecyclerView.addItemDecoration(itemDecoration);
-//        Button teste = mContentView.findViewById(R.id.teste);
-//        teste.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent teste = new Intent(getActivity(), WishlistActivity.class);
-//                startActivity(teste);
-//            }
-//        });
-
         return mContentView;
     }
 
@@ -163,7 +147,7 @@ public class LiveFragment extends Fragment {
             @Override
             public void onSuccess(final Location location) {
                 if (location != null) {
-                    getApi().getNearbyRestaurants(41.121052, -8.615629, 20, 10000, "rating", "desc", "75be9f9e2239fe637bf9cb1b46979d91")
+                    getApi().getNearbyRestaurants(41.4124, -8.5206, 20, 10000, "rating", "desc", "75be9f9e2239fe637bf9cb1b46979d91")
                             .enqueue(new Callback<SearchResponse>() {
                                 @Override
                                 public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
