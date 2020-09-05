@@ -1,3 +1,4 @@
+
 package com.click2eat.app.models;
 
 
@@ -22,6 +23,7 @@ public class RatingObj {
     public void setBgColor(BgColor bgColor) {
         this.bgColor = bgColor;
     }
+
 
 
 }

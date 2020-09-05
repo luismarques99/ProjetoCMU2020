@@ -1,3 +1,4 @@
+
 package com.click2eat.app.models;
 
 public class Location {
@@ -84,6 +85,7 @@ public class Location {
     public void setLocalityVerbose(String localityVerbose) {
         this.localityVerbose = localityVerbose;
     }
+
 
 
 }

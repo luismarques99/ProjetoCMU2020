@@ -1,3 +1,4 @@
+
 package com.click2eat.app.models;
 
 public class UserRating {
@@ -48,6 +49,7 @@ public class UserRating {
     public void setVotes(String votes) {
         this.votes = votes;
     }
+
 
 
 }

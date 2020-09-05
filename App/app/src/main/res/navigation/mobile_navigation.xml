@@ -34,4 +34,9 @@
         android:name="com.click2eat.app.ui.wishlist.WishlistFragment"
         android:label="@string/title_wishlist"
         tools:layout="@layout/fragment_wishlist" />
+
+    <fragment
+        android:id="@+id/restaurant_details"
+        android:name="com.click2eat.app.RestaurantDetailsFragment"
+        tools:layout="@layout/fragment_restaurant_details" />
 </navigation>
