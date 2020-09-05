@@ -115,8 +115,8 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
             nameTextView = itemView.findViewById(R.id.restaurantName);
             ratingTextView = itemView.findViewById(R.id.restaurantRating);
             distanceTextView = itemView.findViewById(R.id.restaurantDistance);
-            addToWishlistButton = itemView.findViewById(R.id.button_add_wishlist);
-            addToFavoritesButton = itemView.findViewById(R.id.button_add_favorites);
+            addToWishlistButton = itemView.findViewById(R.id.button_wishlist);
+            addToFavoritesButton = itemView.findViewById(R.id.button_favorites);
         }
 
     }
