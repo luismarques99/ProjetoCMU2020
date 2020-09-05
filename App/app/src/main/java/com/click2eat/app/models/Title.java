@@ -1,3 +1,4 @@
+
 package com.click2eat.app.models;
 
 public class Title {

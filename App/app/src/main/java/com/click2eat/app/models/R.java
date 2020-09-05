@@ -1,3 +1,4 @@
+
 package com.click2eat.app.models;
 
 public class R {
@@ -29,6 +30,7 @@ public class R {
     public void setIsGroceryStore(Boolean isGroceryStore) {
         this.isGroceryStore = isGroceryStore;
     }
+
 
 
 }

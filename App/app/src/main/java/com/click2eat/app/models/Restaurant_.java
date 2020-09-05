@@ -1,3 +1,4 @@
+
 package com.click2eat.app.models;
 
 import java.util.List;
@@ -14,18 +15,17 @@ public class Restaurant_ {
     private Integer switchToOrderMenu;
     private String cuisines;
     private String timings;
-    private Integer averageCostForTwo;
+    private Integer average_cost_for_two;
     private String price_range;
     private String currency;
-    private List<String> highlights = null;
-    private List<Object> offers = null;
+    private List<String> highlights;
+    private List<Object> offers;
     private Integer opentableSupport;
     private Integer isZomatoBookRes;
     private String mezzoProvider;
     private Integer isBookFormWebView;
     private String bookFormWebViewUrl;
     private String bookAgainUrl;
-    private String thumb;
     private UserRating user_rating;
     private Integer allReviewsCount;
     private String photosUrl;
@@ -40,10 +40,9 @@ public class Restaurant_ {
     private Integer isTableReservationSupported;
     private Integer hasTableBooking;
     private String eventsUrl;
-    private String phoneNumbers;
+    private String phone_numbers;
     private AllReviews allReviews;
     private List<String> establishment;
-    private List<Object> establishmentTypes;
     private double distance;
 
 
@@ -120,11 +119,11 @@ public class Restaurant_ {
     }
 
     public Integer getAverageCostForTwo() {
-        return averageCostForTwo;
+        return average_cost_for_two;
     }
 
     public void setAverageCostForTwo(Integer averageCostForTwo) {
-        this.averageCostForTwo = averageCostForTwo;
+        this.average_cost_for_two = averageCostForTwo;
     }
 
     public String getPriceRange() {
@@ -132,7 +131,7 @@ public class Restaurant_ {
     }
 
     public void setPriceRange(String priceRange) {
-        this.price_range = priceRange;
+        this.price_range= priceRange;
     }
 
     public String getCurrency() {
@@ -207,20 +206,13 @@ public class Restaurant_ {
         this.bookAgainUrl = bookAgainUrl;
     }
 
-    public String getThumb() {
-        return thumb;
-    }
-
-    public void setThumb(String thumb) {
-        this.thumb = thumb;
-    }
 
     public UserRating getUserRating() {
         return user_rating;
     }
 
     public void setUserRating(UserRating userRating) {
-        this.user_rating = userRating;
+        this.user_rating= userRating;
     }
 
     public Integer getAllReviewsCount() {
@@ -328,11 +320,11 @@ public class Restaurant_ {
     }
 
     public String getPhoneNumbers() {
-        return phoneNumbers;
+        return phone_numbers;
     }
 
     public void setPhoneNumbers(String phoneNumbers) {
-        this.phoneNumbers = phoneNumbers;
+        this.phone_numbers = phoneNumbers;
     }
 
     public AllReviews getAllReviews() {
@@ -351,13 +343,6 @@ public class Restaurant_ {
         this.establishment = establishment;
     }
 
-    public List<Object> getEstablishmentTypes() {
-        return establishmentTypes;
-    }
-
-    public void setEstablishmentTypes(List<Object> establishmentTypes) {
-        this.establishmentTypes = establishmentTypes;
-    }
 
     public double getDistance() {
         return distance;

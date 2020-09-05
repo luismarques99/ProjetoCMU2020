@@ -38,11 +38,11 @@ public class SearchFragment extends Fragment {
         return root;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        searchViewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
-        // TODO: Use the ViewModel
-    }
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//        searchViewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
+//        // TODO: Use the ViewModel
+//    }
 
 }

@@ -1,3 +1,4 @@
+
 package com.click2eat.app.models;
 
 public class BgColor {
@@ -21,6 +22,7 @@ public class BgColor {
     public void setTint(String tint) {
         this.tint = tint;
     }
+
 
 
 }

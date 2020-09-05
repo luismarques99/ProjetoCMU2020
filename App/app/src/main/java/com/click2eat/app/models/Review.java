@@ -1,3 +1,4 @@
+
 package com.click2eat.app.models;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public class Review {
     public void setReview(List<Object> review) {
         this.review = review;
     }
+
 
 
 }

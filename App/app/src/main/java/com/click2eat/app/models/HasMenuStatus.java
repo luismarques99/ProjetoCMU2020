@@ -1,3 +1,4 @@
+
 package com.click2eat.app.models;
 
 
@@ -22,6 +23,7 @@ public class HasMenuStatus {
     public void setTakeaway(Integer takeaway) {
         this.takeaway = takeaway;
     }
+
 
 
 }
