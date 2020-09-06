@@ -5,8 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.click2eat.app.ui.live.LiveFragment;
-import com.click2eat.app.ui.live.OnRestaurantClickedListener;
+import com.click2eat.app.ui.OnRestaurantClickedListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -69,6 +68,8 @@ public class MainActivity extends AppCompatActivity implements OnRestaurantClick
                 return true;
 
             case R.id.options_settings:
+                Intent goToSettings=new Intent(MainActivity.this,SettingsActivity.class);
+                startActivity(goToSettings);
                 return true;
 
             case R.id.options_logout:

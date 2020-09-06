@@ -5,30 +5,26 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.click2eat.app.R;
-import com.click2eat.app.RestaurantAdapter;
-import com.click2eat.app.ZomatoApi;
+import com.click2eat.app.RetrofitZomato;
+import com.click2eat.app.ui.OnRestaurantClickedListener;
+import com.click2eat.app.ui.RestaurantAdapter;
 import com.click2eat.app.models.Restaurant;
 import com.click2eat.app.models.Restaurant_;
 import com.click2eat.app.models.SearchResponse;
@@ -44,8 +40,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LiveFragment extends Fragment {
 
@@ -57,20 +51,6 @@ public class LiveFragment extends Fragment {
     private FirebaseAuth mAuth;
     private static final int REQUEST_FINE_LOCATION = 100;
     private FusedLocationProviderClient mFusedLocationClient;
-
-//    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        liveViewModel = ViewModelProviders.of(this).get(LiveViewModel.class);
-//        View root = inflater.inflate(R.layout.fragment_live, container, false);
-//        final TextView textView = root.findViewById(R.id.text_live);
-//        liveViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
-//        return root;
-//    }
-
 
     public LiveFragment() {
     }
@@ -95,17 +75,6 @@ public class LiveFragment extends Fragment {
         mRecyclerView = mContentView.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContentView.getContext()));
         mRecyclerView.setAdapter(mAdapter);
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(context, DividerItemDecoration.VERTICAL);
-        mRecyclerView.addItemDecoration(itemDecoration);
-//        Button teste = mContentView.findViewById(R.id.teste);
-//        teste.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent teste = new Intent(getActivity(), WishlistActivity.class);
-//                startActivity(teste);
-//            }
-//        });
-
         return mContentView;
     }
 
@@ -134,17 +103,6 @@ public class LiveFragment extends Fragment {
         }
     }
 
-    private Retrofit getRetrofit() {
-        return new Retrofit.Builder()
-                .baseUrl("https://developers.zomato.com/api/v2.1/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-    }
-
-    private ZomatoApi getApi() {
-        return getRetrofit().create(ZomatoApi.class);
-    }
-
     private void getLastLocation() {
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions( //Method of Fragment
@@ -163,29 +121,35 @@ public class LiveFragment extends Fragment {
             @Override
             public void onSuccess(final Location location) {
                 if (location != null) {
-                    getApi().getNearbyRestaurants(location.getLatitude(), location.getLongitude(), 20, 10000, "rating", "desc", "75be9f9e2239fe637bf9cb1b46979d91")
-                            .enqueue(new Callback<SearchResponse>() {
-                                @Override
-                                public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
-                                    List<Restaurant> restaurants = response.body().getRestaurants();
-                                    for (int i = 0; i < restaurants.size(); i++) {
-                                        double distance = calculateDistance(Double.parseDouble(restaurants.get(i).getRestaurant().getLocation().getLatitude()),
-                                                Double.parseDouble(restaurants.get(i).getRestaurant().getLocation().getLongitude()), location.getLatitude(), location.getLongitude());
-                                        distance = (double) Math.round(distance * 100d) / 100d;
-                                        restaurants.get(i).getRestaurant().setDistance(distance);
-                                        restaurantsList.add(restaurants.get(i).getRestaurant());
-                                        mAdapter.notifyItemInserted(i);
-                                    }
-                                }
+                    SharedPreferences mSettings = PreferenceManager.getDefaultSharedPreferences(context);
+                    String sort = mSettings.getString("sort", "rating");
+                    String order = mSettings.getString("order", "desc");
+                    int radius=Integer.parseInt(mSettings.getString("radius","10"));
+                    radius=radius*1000;
 
-                                @Override
-                                public void onFailure(Call<SearchResponse> call, Throwable t) {
-                                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                                    builder.setMessage("Couldn't find any nearby restaurants");
-                                    AlertDialog mDialog = builder.create();
-                                    mDialog.show();
-                                }
-                            });
+                    RetrofitZomato.getApi().getNearbyRestaurants(location.getLatitude(), location.getLongitude(), 20, radius, sort, order,
+                            getResources().getString(R.string.user_key)).enqueue(new Callback<SearchResponse>() {
+                        @Override
+                        public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
+                            List<Restaurant> restaurants = response.body().getRestaurants();
+                            for (int i = 0; i < restaurants.size(); i++) {
+                                double distance = calculateDistance(Double.parseDouble(restaurants.get(i).getRestaurant().getLocation().getLatitude()),
+                                        Double.parseDouble(restaurants.get(i).getRestaurant().getLocation().getLongitude()), location.getLatitude(), location.getLongitude());
+                                distance = (double) Math.round(distance * 100d) / 100d;
+                                restaurants.get(i).getRestaurant().setDistance(distance);
+                                restaurantsList.add(restaurants.get(i).getRestaurant());
+                                mAdapter.notifyItemInserted(i);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<SearchResponse> call, Throwable t) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                            builder.setMessage("Couldn't find any nearby restaurants");
+                            AlertDialog mDialog = builder.create();
+                            mDialog.show();
+                        }
+                    });
                 }
             }
         }).addOnFailureListener(getActivity(), new OnFailureListener() {

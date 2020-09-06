@@ -1,33 +1,80 @@
 package com.click2eat.app.ui.favorites;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.click2eat.app.R;
+import com.click2eat.app.ui.LoadListTask;
+import com.click2eat.app.ui.OnRestaurantClickedListener;
+import com.click2eat.app.ui.SimpleAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FavoritesFragment extends Fragment {
 
-    private FavoritesViewModel favoritesViewModel;
+    private static SimpleAdapter mAdapter;
+    private RecyclerView mRecyclerView;
+    protected static List<String> favorites;
+    private Context context;
+    protected static OnRestaurantClickedListener listener;
+    private FirebaseAuth mAuth;
 
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        favoritesViewModel = ViewModelProviders.of(this).get(FavoritesViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_favorites, container, false);
-        final TextView textView = root.findViewById(R.id.text_favorites);
-        favoritesViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
+    public static SimpleAdapter getmAdapter() {
+        return mAdapter;
+    }
+
+    public static List<String> getFavorites() {
+        return favorites ;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        context = getContext();
+        mAuth = FirebaseAuth.getInstance();
+        favorites = new ArrayList<>();
+        mAdapter = new SimpleAdapter(context, favorites, getActivity(), mAuth.getCurrentUser().getUid());
+        LoadListTask lft = new LoadListTask(getActivity(), favorites, mAdapter, mAuth.getCurrentUser().getUid(),"favorite");
+        lft.execute();
+
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View mContentView = inflater.inflate(R.layout.list_restaurants, container, false);
+        mRecyclerView = mContentView.findViewById(R.id.recycler_view);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContentView.getContext()));
+        mRecyclerView.setAdapter(mAdapter);
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(context, DividerItemDecoration.VERTICAL);
+        mRecyclerView.addItemDecoration(itemDecoration);
+
+        return mContentView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            listener = (OnRestaurantClickedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement OnRestaurantClickedClicked");
+        }
     }
 }

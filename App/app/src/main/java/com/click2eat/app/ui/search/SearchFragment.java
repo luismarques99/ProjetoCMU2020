@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,12 +34,13 @@ import android.widget.Toast;
 import com.click2eat.app.LoginActivity;
 import com.click2eat.app.R;
 import com.click2eat.app.RegisterActivity;
-import com.click2eat.app.RestaurantAdapter;
+import com.click2eat.app.ui.OnRestaurantClickedListener;
+import com.click2eat.app.ui.RestaurantAdapter;
 import com.click2eat.app.ZomatoApi;
 import com.click2eat.app.models.Restaurant;
 import com.click2eat.app.models.Restaurant_;
 import com.click2eat.app.models.SearchResponse;
-import com.click2eat.app.ui.live.OnRestaurantClickedListener;
+
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -142,7 +145,12 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onSuccess(final Location location) {
                 if (location != null) {
-                    getApi().searchByName(keyword.getText().toString(),location.getLatitude(), location.getLongitude(), 20, 10000, "rating", "desc", "75be9f9e2239fe637bf9cb1b46979d91")
+                    SharedPreferences mSettings = PreferenceManager.getDefaultSharedPreferences(context);
+                    String sort = mSettings.getString("sort", "rating");
+                    String order = mSettings.getString("order", "desc");
+                    double radius=Double.parseDouble(mSettings.getString("radius","10"));
+                    radius=radius*1000;
+                    getApi().searchByName(keyword.getText().toString(),location.getLatitude(), location.getLongitude(), 20, radius, sort, order, "75be9f9e2239fe637bf9cb1b46979d91")
                             .enqueue(new Callback<SearchResponse>() {
                                 @Override
                                 public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
