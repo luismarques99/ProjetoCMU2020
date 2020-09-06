@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.click2eat.app.ui.OnRestaurantClickedListener;
+import com.click2eat.app.ui.SendNotificationTask;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -41,6 +42,9 @@ public class MainActivity extends AppCompatActivity implements OnRestaurantClick
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        SendNotificationTask nt=new SendNotificationTask(this,currentUser.getUid(),this);
+        nt.execute();
 
         // LiveFragment
 //        LiveFragment liveFragment = new LiveFragment();
