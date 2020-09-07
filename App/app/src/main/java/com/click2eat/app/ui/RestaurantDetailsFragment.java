@@ -1,6 +1,8 @@
 package com.click2eat.app.ui;
 
 import android.app.AlertDialog;
+import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 
+import com.click2eat.app.MapActivity;
 import com.click2eat.app.R;
 import com.click2eat.app.ZomatoApi;
 import com.click2eat.app.models.Restaurant_;
@@ -38,6 +41,8 @@ public class RestaurantDetailsFragment extends Fragment implements View.OnClickL
     private TextView mEstablishment;
     private Button mMapButton;
     private Button backButton;
+    private String lat;
+    private String lon;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -78,6 +83,9 @@ public class RestaurantDetailsFragment extends Fragment implements View.OnClickL
                         mCuisines.setText(response.body().getCuisines());
                         List<String> establishmentType = response.body().getEstablishment();
                         mEstablishment.setText(establishmentType.size() != 0 ? establishmentType.get(0) : "N/a");
+                        lat=response.body().getLocation().getLatitude();
+                        lon=response.body().getLocation().getLongitude();
+
                     }
 
                     @Override
@@ -106,8 +114,10 @@ public class RestaurantDetailsFragment extends Fragment implements View.OnClickL
     public void onClick(View view) {
         int id = view.getId();
         if (id == R.id.seeMap) {
-//            Intent mapIntent = new Intent(getActivity(), MapActivity.class);
-//            startActivity(mapIntent);
+            Intent mapIntent = new Intent(getActivity(), MapActivity.class);
+            mapIntent.putExtra("lat",lat);
+            mapIntent.putExtra("lon",lon);
+            startActivity(mapIntent);
         } else if (id == R.id.button_go_back) {
             getActivity().onBackPressed();
         }
