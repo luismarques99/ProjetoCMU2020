@@ -1,24 +1,15 @@
 package com.click2eat.app.ui.search;
 
-import androidx.core.app.ActivityCompat;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,15 +19,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.click2eat.app.LoginActivity;
 import com.click2eat.app.R;
-import com.click2eat.app.RegisterActivity;
+import com.click2eat.app.RetrofitZomato;
 import com.click2eat.app.ui.OnRestaurantClickedListener;
 import com.click2eat.app.ui.RestaurantAdapter;
-import com.click2eat.app.ZomatoApi;
 import com.click2eat.app.models.Restaurant;
 import com.click2eat.app.models.Restaurant_;
 import com.click2eat.app.models.SearchResponse;
@@ -53,8 +42,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SearchFragment extends Fragment implements View.OnClickListener {
 
@@ -92,24 +79,14 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         mRecyclerView = mContentView.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContentView.getContext()));
         mRecyclerView.setAdapter(mAdapter);
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(context, DividerItemDecoration.VERTICAL);
-        mRecyclerView.addItemDecoration(itemDecoration);
-        Button searchButton=mContentView.findViewById(R.id.search);
-        keyword=mContentView.findViewById(R.id.keyword);
 
+        keyword = mContentView.findViewById(R.id.keyword);
+
+        ImageButton searchButton = mContentView.findViewById(R.id.search);
         searchButton.setOnClickListener(this);
-//        Button teste = mContentView.findViewById(R.id.teste);
-//        teste.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent teste = new Intent(getActivity(), WishlistActivity.class);
-//                startActivity(teste);
-//            }
-//        });
 
         return mContentView;
     }
-
 
     @Override
     public void onResume() {
@@ -126,18 +103,6 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private Retrofit getRetrofit() {
-        return new Retrofit.Builder()
-                .baseUrl("https://developers.zomato.com/api/v2.1/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-    }
-
-    private ZomatoApi getApi() {
-        return getRetrofit().create(ZomatoApi.class);
-    }
-
-
     @SuppressLint("MissingPermission")
     private void getRestaurants() {
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
@@ -148,16 +113,22 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
                     SharedPreferences mSettings = PreferenceManager.getDefaultSharedPreferences(context);
                     String sort = mSettings.getString("sort", "rating");
                     String order = mSettings.getString("order", "desc");
-                    double radius=Double.parseDouble(mSettings.getString("radius","10"));
-                    radius=radius*1000;
-                    getApi().searchByName(keyword.getText().toString(),location.getLatitude(), location.getLongitude(), 20, radius, sort, order, "75be9f9e2239fe637bf9cb1b46979d91")
+                    double radius = Double.parseDouble(mSettings.getString("radius", "10"));
+                    radius = radius * 1000;
+                    RetrofitZomato.getApi().searchByName(keyword.getText().toString(), location.getLatitude(), location.getLongitude(),
+                            20, radius, sort, order, getActivity().getResources().getString(R.string.user_key))
                             .enqueue(new Callback<SearchResponse>() {
                                 @Override
                                 public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
+                                    if (restaurantsList.size() != 0) {
+                                        restaurantsList.clear();
+                                        mAdapter.notifyDataSetChanged();
+                                    }
                                     List<Restaurant> restaurants = response.body().getRestaurants();
                                     for (int i = 0; i < restaurants.size(); i++) {
                                         double distance = calculateDistance(Double.parseDouble(restaurants.get(i).getRestaurant().getLocation().getLatitude()),
-                                                Double.parseDouble(restaurants.get(i).getRestaurant().getLocation().getLongitude()), location.getLatitude(), location.getLongitude());
+                                                Double.parseDouble(restaurants.get(i).getRestaurant().getLocation().getLongitude()),
+                                                location.getLatitude(), location.getLongitude());
                                         distance = (double) Math.round(distance * 100d) / 100d;
                                         restaurants.get(i).getRestaurant().setDistance(distance);
                                         restaurantsList.add(restaurants.get(i).getRestaurant());
@@ -200,11 +171,10 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        int id= view.getId();
+        int id = view.getId();
         if (id == R.id.search) {
             getRestaurants();
-
-    }
+        }
     }
 //    @Override
 //    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
