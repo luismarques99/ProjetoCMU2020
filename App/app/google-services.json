@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "834820762898",
+    "firebase_url": "https://click2eat-6ed12.firebaseio.com",
+    "project_id": "click2eat-6ed12",
+    "storage_bucket": "click2eat-6ed12.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:834820762898:android:883e4868f68f84af0617cb",
+        "android_client_info": {
+          "package_name": "com.click2eat.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "834820762898-hpi4rlagnb386551kc8v4jqkmtl2shvo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCk69Jqpgeba1Cplkgpeg7uqZwXFTFlpxk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "834820762898-hpi4rlagnb386551kc8v4jqkmtl2shvo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

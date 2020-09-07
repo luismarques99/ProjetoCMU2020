@@ -18,7 +18,7 @@
 \usepackage[portuguese]{babel}
 
 % Font
-\usepackage[default]{cantarell} %% Use option "defaultsans" to use cantarell as sans serif only
+\usepackage[default]{cantarell}
 \usepackage[T1]{fontenc}
 
 % Figures
@@ -28,7 +28,6 @@
 % Tables
 \usepackage{booktabs}
 \usepackage{array}
-\usepackage[table, xcdraw]{xcolor}
 
 % Improve justification document wide
 \usepackage{microtype}
@@ -44,7 +43,6 @@
 % Set the indentation length
 \setlength\parindent{1.25cm}
 % Set the number of depth of sections
-\setcounter{secnumdepth}{5}
 
 % Glossary and acronyms
 \usepackage[acronym, nogroupskip, toc]{glossaries}
@@ -70,6 +68,20 @@
 	pdfauthor={Luís Marques & Vasco Neves}
 ]{hyperref}
 \usepackage{bookmark}
+
+% Mini TOC in each chapter
+\usepackage{minitoc}
+% Silence minitoc warnings
+\usepackage{silence}
+\WarningFilter{minitoc(hints)}{W0023}
+\WarningFilter{minitoc(hints)}{W0024}
+\WarningFilter{minitoc(hints)}{W0028}
+\WarningFilter{minitoc(hints)}{W0030}
+
+% Set the number of depth of sections
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5}
+\setcounter{minitocdepth}{5}
 
 \glsdisablehyper
 \makenoidxglossaries
@@ -105,6 +117,15 @@
 % Blank page
 \subfile{blank_page.tex}
 
+% Initialization of minitoc
+\dominitoc
+\mtcsettitle{minitoc}{}
+\mtcsetoffset{minitoc}{-1.0em}
+\renewcommand{\mtifont}{\large\sffamily}
+\renewcommand{\mtcfont}{\small\sffamily}
+\renewcommand{\mtcSfont}{\small\sffamily}
+\renewcommand{\mtcSSfont}{\small\sffamily}
+\renewcommand{\mtcSSSfont}{\small\sffamily}
 % Table of contents
 \tableofcontents
 \newpage
@@ -119,15 +140,9 @@
 % Blank page
 \subfile{blank_page.tex}
 
-% List of tables
-\listoftables
-\newpage
-
-% Blank page
-\subfile{blank_page.tex}
-
 % Glossary
 \printnoidxglossary
+\adjustmtc
 \newpage
 
 % Blank page
@@ -135,6 +150,7 @@
 
 % Abbreviations
 \printnoidxglossary[type=\acronymtype, title={Abreviaturas}]
+\adjustmtc
 \newpage
 
 % Blank page
@@ -144,6 +160,15 @@
 
 % 1. Introduction
 \subfile{introduction.tex}
+
+% 2. Background
+\subfile{background.tex}
+
+% 3. Build
+\subfile{build.tex}
+
+% 4. Final product
+\subfile{final_product.tex}
 
 % Blank page
 \subfile{blank_page.tex}

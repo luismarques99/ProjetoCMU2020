@@ -1,3 +1,54 @@
 <resources>
-    <string name="app_name">App</string>
+    // App
+    <string name="app_name">Click2Eat</string>
+    <string name="title_live">Live</string>
+    <string name="title_visited">Visited</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="title_wishlist">Wishlist</string>
+    <string name="title_search">Search</string>
+    <string name="title_profile">👤 Profile</string>
+    <string name="title_settings">⚙ Settings</string>
+    <string name="title_logout">🚪 Logout</string>
+
+    // Fields
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="password_confirmation">Confirm password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="register_message">New to Click2Eat? Register now.</string>
+    <string name="create_account_title">Register to start using the app</string>
+    <string name="create_account_description">"One more step and it's done! We also hate paperwork."</string>
+    <string name="create_account_message">Create your account.</string>
+    <string name="search">Search…</string>
+
+    // Logos
+    <string name="letters_logo_description">Click2Eat letters logo</string>
+    <string name="logo_description">Click2Eat logo</string>
+
+    // API
+    <string name="user_key">75be9f9e2239fe637bf9cb1b46979d91</string>
+
+    // Restaurant
+    <string name="restaurant_name">Name:</string>
+    <string name="restaurant_type">Type:</string>
+    <string name="restaurant_address">Address:</string>
+    <string name="restaurant_rating">Rating:</string>
+    <string name="restaurant_votes">Votes:</string>
+    <string name="restaurant_average_cost">Average cost for two:</string>
+    <string name="restaurant_timings">Timings:</string>
+    <string name="restaurant_contacts">Contacts:</string>
+    <string name="restaurant_cuisines">Cuisines:</string>
+
+    <!--    <string name="title_activity_login">LoginActivity</string>-->
+    <!--    <string name="prompt_email">Email</string>-->
+    <!--    <string name="prompt_password">Password</string>-->
+    <!--    <string name="action_sign_in">Sign in or register</string>-->
+    <!--    <string name="action_sign_in_short">Sign in</string>-->
+    <!--    <string name="welcome">"Welcome !"</string>-->
+    <!--    <string name="invalid_username">Not a valid username</string>-->
+    <!--    <string name="invalid_password">Password must be > 5 characters</string>-->
+    <!--    <string name="login_failed">"Login failed"</string>-->
+
+
 </resources>
