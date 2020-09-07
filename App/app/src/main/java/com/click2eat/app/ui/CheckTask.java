@@ -59,6 +59,7 @@ public class CheckTask extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected void onPostExecute(Void aVoid) {
+
         //If it doesn´t exist in the database
         if (count == 0) {
 

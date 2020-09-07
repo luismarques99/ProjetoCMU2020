@@ -90,11 +90,13 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.WishlistVi
                             }
                         });*/
                         final ImageButton wishlistButton = viewHolder.wishlistButton;
+                        wishlistButton.getBackground().setTint(activity.getResources().getColor(R.color.colorPrimaryDark));
                         CheckTask wishTask = new CheckTask(activity, currentUserId, id, "wishlist", wishlistButton,
                                 WishlistFragment.getWishlist());
                         wishTask.execute();
 
                         final ImageButton favoritesButton = viewHolder.favoritesButton;
+                        favoritesButton.getBackground().setTint(activity.getResources().getColor(R.color.colorPrimaryDark));
                         CheckTask favTask = new CheckTask(activity, currentUserId, id, "favorite", favoritesButton,
                                 FavoritesFragment.getFavorites());
                         favTask.execute();
@@ -118,6 +120,7 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.WishlistVi
                                     distance = (double) Math.round(distance * 100d) / 100d;
                                     mDistance.setText(distance + "Km");
                                     final ImageButton visitedButton = viewHolder.visitedButton;
+                                    visitedButton.getBackground().setTint(activity.getResources().getColor(R.color.colorPrimaryDark));
                                     CheckTask visitedTask = new CheckTask(activity, currentUserId, id, "visited", visitedButton,
                                             VisitedFragment.getVisited(),
                                             distance);

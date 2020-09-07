@@ -77,16 +77,19 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         distance.setText(restaurant.getDistance() + " Km");
 
         final ImageButton addToVisitedButton = viewHolder.addVisitedButton;
+        addToVisitedButton.getBackground().setTint(activity.getResources().getColor(R.color.colorPrimaryDark));
         CheckTask visitedTask = new CheckTask(activity, currentUserId, restaurant.getId(), "visited", addToVisitedButton,
                 VisitedFragment.getVisited(), restaurant.getDistance());
         visitedTask.execute();
 
         final ImageButton addToFavoritesButton = viewHolder.addToFavoritesButton;
+        addToFavoritesButton.getBackground().setTint(activity.getResources().getColor(R.color.colorPrimaryDark));
         CheckTask favTask = new CheckTask(activity, currentUserId, restaurant.getId(), "favorite", addToFavoritesButton,
                 FavoritesFragment.getFavorites());
         favTask.execute();
 
         final ImageButton addToWishlistButton = viewHolder.addToWishlistButton;
+        addToWishlistButton.getBackground().setTint(activity.getResources().getColor(R.color.colorPrimaryDark));
         CheckTask wishTask = new CheckTask(activity, currentUserId, restaurant.getId(), "wishlist", addToWishlistButton,
                 WishlistFragment.getWishlist());
         wishTask.execute();
