@@ -1,4 +1,4 @@
-# :iphone: ProjetoCMU2020 :iphone:
+# <img src="Docs/Logos/LogoLightTheme.png" alt="Logo" height="50"/> <img src="Docs/Logos/LettersLightTheme.png" alt="Logo" height="50"/>
 
 ## Contents
 
@@ -19,7 +19,7 @@ Project carried out in 2020 special season withint the scope of ***Computação 
 
 See all the documents in [`Docs`](Docs).
 
-## Web App
+## Mobile App
 
 Go to [`App`](App) for more information.
 
