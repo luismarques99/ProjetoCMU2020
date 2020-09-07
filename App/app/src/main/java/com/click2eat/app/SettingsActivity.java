@@ -1,6 +1,7 @@
 package com.click2eat.app;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,12 +11,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        Toolbar toolbar = findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -56,11 +63,11 @@ public class SettingsActivity extends AppCompatActivity {
             rb.setChecked(true);
         }
 
-        Button saveButton=findViewById(R.id.button);
+        Button saveButton = findViewById(R.id.button_save);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToLive=new Intent(SettingsActivity.this,MainActivity.class);
+                Intent goToLive = new Intent(SettingsActivity.this, MainActivity.class);
                 startActivity(goToLive);
             }
         });
@@ -129,6 +136,11 @@ public class SettingsActivity extends AppCompatActivity {
                 }
                 break;
         }
+
+    }
+
+    @Override
+    public void onClick(View view) {
 
     }
 }
