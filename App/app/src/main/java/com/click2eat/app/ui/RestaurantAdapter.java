@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.click2eat.app.R;
 import com.click2eat.app.models.Restaurant_;
+import com.click2eat.app.tasks.CheckTask;
 import com.click2eat.app.ui.favorites.FavoritesFragment;
 import com.click2eat.app.ui.live.LiveFragment;
 import com.click2eat.app.ui.visited.VisitedFragment;

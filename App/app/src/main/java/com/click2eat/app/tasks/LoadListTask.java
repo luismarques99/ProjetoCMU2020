@@ -1,4 +1,4 @@
-package com.click2eat.app.ui;
+package com.click2eat.app.tasks;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -10,6 +10,7 @@ import androidx.room.Room;
 import com.click2eat.app.MainActivity;
 import com.click2eat.app.R;
 import com.click2eat.app.database.DB;
+import com.click2eat.app.ui.SimpleAdapter;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.click2eat.app;
+package com.click2eat.app.api;
 
 import com.click2eat.app.models.Restaurant_;
 import com.click2eat.app.models.SearchResponse;

@@ -1,4 +1,4 @@
-package com.click2eat.app.ui;
+package com.click2eat.app.tasks;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -14,7 +14,7 @@ import androidx.core.app.NotificationManagerCompat;
 import androidx.room.Room;
 
 import com.click2eat.app.R;
-import com.click2eat.app.RetrofitZomato;
+import com.click2eat.app.api.RetrofitZomato;
 import com.click2eat.app.database.DB;
 
 import com.click2eat.app.models.Restaurant_;

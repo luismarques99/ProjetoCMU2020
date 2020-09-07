@@ -25,7 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.click2eat.app.R;
-import com.click2eat.app.RetrofitZomato;
+import com.click2eat.app.api.RetrofitZomato;
 import com.click2eat.app.ui.OnRestaurantClickedListener;
 import com.click2eat.app.ui.RestaurantAdapter;
 import com.click2eat.app.models.Restaurant;

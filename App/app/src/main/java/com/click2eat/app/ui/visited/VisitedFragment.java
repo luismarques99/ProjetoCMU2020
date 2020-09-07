@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.click2eat.app.R;
-import com.click2eat.app.ui.LoadListTask;
+import com.click2eat.app.tasks.LoadListTask;
 import com.click2eat.app.ui.OnRestaurantClickedListener;
 import com.click2eat.app.ui.SimpleAdapter;
 import com.google.firebase.auth.FirebaseAuth;

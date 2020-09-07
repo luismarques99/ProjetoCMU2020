@@ -2,23 +2,19 @@ package com.click2eat.app.ui;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.location.Location;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 
 import com.click2eat.app.MapActivity;
 import com.click2eat.app.R;
-import com.click2eat.app.RetrofitZomato;
-import com.click2eat.app.ZomatoApi;
+import com.click2eat.app.api.RetrofitZomato;
 import com.click2eat.app.models.Restaurant_;
 
 import java.util.List;
@@ -26,8 +22,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RestaurantDetailsFragment extends Fragment implements View.OnClickListener {
     private final String API_KEY = "75be9f9e2239fe637bf9cb1b46979d91";

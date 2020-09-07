@@ -1,4 +1,4 @@
-package com.click2eat.app;
+package com.click2eat.app.api;
 
 import retrofit2.converter.gson.GsonConverterFactory;
 

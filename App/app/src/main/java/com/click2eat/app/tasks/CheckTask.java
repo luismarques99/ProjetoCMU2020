@@ -1,4 +1,4 @@
-package com.click2eat.app.ui;
+package com.click2eat.app.tasks;
 
 import android.app.Activity;
 import android.os.AsyncTask;

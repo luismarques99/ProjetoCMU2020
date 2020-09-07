@@ -52,7 +52,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:maxLines="1"
-                    android:text="Rating"
                     android:textSize="22sp" />
             </LinearLayout>
 
@@ -76,7 +75,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:maxLines="1"
-                    android:text="Distance"
                     android:textSize="18sp" />
             </LinearLayout>
 
