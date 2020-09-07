@@ -8,8 +8,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,6 +41,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         mEmailField = findViewById(R.id.email);
         mPasswordField = findViewById(R.id.password);
         mPasswordConfirmationField = findViewById(R.id.password_confirmation);
+        mPasswordConfirmationField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                if ((keyEvent != null && keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER) || (actionId == EditorInfo.IME_ACTION_GO))
+                    register();
+                return false;
+            }
+        });
 
         // Buttons
         findViewById(R.id.register_button).setOnClickListener(this);
@@ -117,7 +128,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         int i = view.getId();
         if (i == R.id.register_button) {
-            createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
+            register();
         }
 
     }
@@ -131,5 +142,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private void displayPasswordsMustMatchToast() {
         String text = "Passwords must match!";
         Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
+    }
+
+    private void register() {
+        createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
     }
 }

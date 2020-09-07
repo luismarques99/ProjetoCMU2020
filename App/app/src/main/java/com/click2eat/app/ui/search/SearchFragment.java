@@ -14,12 +14,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.preference.PreferenceManager;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.click2eat.app.R;
@@ -81,6 +84,14 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         mRecyclerView.setAdapter(mAdapter);
 
         keyword = mContentView.findViewById(R.id.keyword);
+        keyword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                if ((keyEvent != null && keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER) || (actionId == EditorInfo.IME_ACTION_SEARCH))
+                    getRestaurants();
+                return false;
+            }
+        });
 
         ImageButton searchButton = mContentView.findViewById(R.id.search);
         searchButton.setOnClickListener(this);
