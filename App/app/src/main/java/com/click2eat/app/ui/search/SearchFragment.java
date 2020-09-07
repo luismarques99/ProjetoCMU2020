@@ -143,8 +143,9 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
                                         distance = (double) Math.round(distance * 100d) / 100d;
                                         restaurants.get(i).getRestaurant().setDistance(distance);
                                         restaurantsList.add(restaurants.get(i).getRestaurant());
-                                        mAdapter.notifyItemInserted(i);
+
                                     }
+                                    mAdapter.notifyDataSetChanged();
                                 }
 
                                 @Override
