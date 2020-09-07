@@ -16,7 +16,7 @@ import java.util.List;
 public class LoadListTask extends AsyncTask<Void, Void, Void> {
     private DB db;
     private Activity activity;
-    private List<String>list;
+    private List<String> list;
     private String[] temp;
     private SimpleAdapter adapter;
     private String id;
@@ -42,7 +42,7 @@ public class LoadListTask extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected void onPostExecute(Void aVoid) {
-        if (temp.length==0) {
+        if (temp.length == 0) {
             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
             builder.setTitle("You haven't added anything yet!");
             builder.setMessage("Do you want to add some restaurants now?");

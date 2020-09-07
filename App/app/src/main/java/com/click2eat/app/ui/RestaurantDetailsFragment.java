@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.click2eat.app.MapActivity;
 import com.click2eat.app.R;
+import com.click2eat.app.RetrofitZomato;
 import com.click2eat.app.ZomatoApi;
 import com.click2eat.app.models.Restaurant_;
 
@@ -69,7 +70,7 @@ public class RestaurantDetailsFragment extends Fragment implements View.OnClickL
 
 
     private void getDetails(int id) {
-        getApi().getRestaurantDetails(id, API_KEY)
+        RetrofitZomato.getApi().getRestaurantDetails(id, API_KEY)
                 .enqueue(new Callback<Restaurant_>() {
                     @Override
                     public void onResponse(Call<Restaurant_> call, Response<Restaurant_> response) {
@@ -98,17 +99,6 @@ public class RestaurantDetailsFragment extends Fragment implements View.OnClickL
                 });
     }
 
-
-    private Retrofit getRetrofit() {
-        return new Retrofit.Builder()
-                .baseUrl("https://developers.zomato.com/api/v2.1/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-    }
-
-    private ZomatoApi getApi() {
-        return getRetrofit().create(ZomatoApi.class);
-    }
 
     @Override
     public void onClick(View view) {

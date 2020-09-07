@@ -37,15 +37,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         .defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 // move camera to it
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(Double.parseDouble(lat),Double.parseDouble(lon)), 18));
-        //zoomToLocation(lat,lon);
 
 
     }
 
-    /*private void zoomToLocation(String lat,String lon){
-        LatLng latLng=new LatLng(Double.parseDouble(lat),Double.parseDouble(lon));
-        CameraUpdate cameraUpdate= CameraUpdateFactory.newLatLngZoom(latLng,18);
-        mGoogleMap.animateCamera(cameraUpdate);
-
-    }*/
 }

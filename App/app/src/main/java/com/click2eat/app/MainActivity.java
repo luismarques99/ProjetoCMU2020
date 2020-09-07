@@ -22,8 +22,6 @@ import androidx.appcompat.widget.Toolbar;
 public class MainActivity extends AppCompatActivity implements OnRestaurantClickedListener {
 
     private FirebaseAuth mAuth;
-    private FragmentManager fragmentManager;
-    private FragmentTransaction fragmentTransaction;
     private static NavController navController;
 
     public static NavController getNavController() {

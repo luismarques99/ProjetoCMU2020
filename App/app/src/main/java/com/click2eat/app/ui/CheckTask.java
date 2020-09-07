@@ -73,11 +73,9 @@ public class CheckTask extends AsyncTask<Void, Void, Void> {
                         wlt.execute();
                         if (type == "wishlist") {
                             button.getBackground().setTint(activity.getResources().getColor(R.color.green));
-                            Toast.makeText(activity, "Added to Wishlist", Toast.LENGTH_SHORT).show();
                         }
                         if (type == "favorite") {
                             button.getBackground().setTint(activity.getResources().getColor(R.color.red));
-                            Toast.makeText(activity, "Added to Favorites", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -92,7 +90,6 @@ public class CheckTask extends AsyncTask<Void, Void, Void> {
                             DBObject object = new DBObject(userId, restaurantId, type);
                             AddTask at = new AddTask(object, activity);
                             at.execute();
-                            Toast.makeText(activity, "Marked as visited", Toast.LENGTH_SHORT).show();
                             button.getBackground().setTint(activity.getResources().getColor(R.color.green));
                         }
 

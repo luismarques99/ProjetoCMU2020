@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.click2eat.app.R;
 import com.click2eat.app.RetrofitZomato;
-import com.click2eat.app.ZomatoApi;
 import com.click2eat.app.models.Restaurant_;
 import com.click2eat.app.ui.favorites.FavoritesFragment;
 import com.click2eat.app.ui.live.LiveFragment;
@@ -31,23 +30,18 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.List;
 
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.WishlistViewHolder> {
-    private Context mContext;
     private List<String> mRestaurantIds;
     private Activity activity;
     private String currentUserId;
     private FusedLocationProviderClient mFusedLocationClient;
 
-    public SimpleAdapter(Context context, List<String> ids, Activity activity, String currentUser) {
+    public SimpleAdapter(List<String> ids, Activity activity, String currentUser) {
         mRestaurantIds = ids;
-        mContext = context;
         this.activity = activity;
         currentUserId = currentUser;
     }
@@ -81,14 +75,6 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.WishlistVi
                         final TextView rating = viewHolder.ratingTextView;
                         rating.setText(response.body().getUserRating().getAggregateRating());
 
-                       /* remove.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                DBObject deletedRestaurant=new DBObject(currentUserId,id,"wishlist");
-                                RemoveWLTask rt=new RemoveWLTask(deletedRestaurant,act, WishlistFragment.getWishlist());
-                                rt.execute();
-                            }
-                        });*/
                         final ImageButton wishlistButton = viewHolder.wishlistButton;
                         wishlistButton.getBackground().setTint(activity.getResources().getColor(R.color.colorPrimaryDark));
                         CheckTask wishTask = new CheckTask(activity, currentUserId, id, "wishlist", wishlistButton,
@@ -184,8 +170,6 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.WishlistVi
             wishlistButton = itemView.findViewById(R.id.button_wishlist);
             favoritesButton = itemView.findViewById(R.id.button_favorites);
             visitedButton = itemView.findViewById(R.id.button_visited);
-
-
         }
 
     }

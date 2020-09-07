@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -44,10 +44,9 @@ public class FavoritesFragment extends Fragment {
         context = getContext();
         mAuth = FirebaseAuth.getInstance();
         favorites = new ArrayList<>();
-        mAdapter = new SimpleAdapter(context, favorites, getActivity(), mAuth.getCurrentUser().getUid());
+        mAdapter = new SimpleAdapter(favorites, getActivity(), mAuth.getCurrentUser().getUid());
         LoadListTask lft = new LoadListTask(getActivity(), favorites, mAdapter, mAuth.getCurrentUser().getUid(),"favorite");
         lft.execute();
-
     }
 
 

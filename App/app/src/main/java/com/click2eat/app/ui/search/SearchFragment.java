@@ -19,7 +19,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -73,7 +72,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         context = getContext();
         mAuth = FirebaseAuth.getInstance();
         restaurantsList = new ArrayList<>();
-        mAdapter = new RestaurantAdapter(context, restaurantsList, getActivity());
+        mAdapter = new RestaurantAdapter(restaurantsList, getActivity());
     }
 
     @Override

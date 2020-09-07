@@ -5,7 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -45,7 +45,7 @@ public class WishlistFragment extends Fragment {
         context = getContext();
         mAuth = FirebaseAuth.getInstance();
         wishlist = new ArrayList<>();
-        mAdapter = new SimpleAdapter(context, wishlist,getActivity(),mAuth.getCurrentUser().getUid());
+        mAdapter = new SimpleAdapter( wishlist,getActivity(),mAuth.getCurrentUser().getUid());
         LoadListTask lwt=new LoadListTask(getActivity(),wishlist,mAdapter,mAuth.getCurrentUser().getUid(),"wishlist");
         lwt.execute();
 

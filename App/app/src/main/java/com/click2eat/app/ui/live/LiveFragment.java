@@ -66,7 +66,7 @@ public class LiveFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         restaurantsList = new ArrayList<>();
         getLastLocation();
-        mAdapter = new RestaurantAdapter(context, restaurantsList, getActivity());
+        mAdapter = new RestaurantAdapter(restaurantsList, getActivity());
     }
 
     @Override
