@@ -74,22 +74,22 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
         rating.setText((restaurant.getUserRating().getAggregateRating()));
 
         final TextView distance = viewHolder.distanceTextView;
-        distance.setText(String.valueOf(restaurant.getDistance()) + " Km");
+        distance.setText(restaurant.getDistance() + " Km");
 
-
-        final ImageButton addToWishlistButton = viewHolder.addToWishlistButton;
-        CheckTask wishTask=new CheckTask(activity,currentUserId,restaurant.getId(),"wishlist",addToWishlistButton, WishlistFragment.getWishlist());
-        wishTask.execute();
-
-        final ImageButton addToFavoritesButton = viewHolder.addToFavoritesButton;
-        CheckTask favTask=new CheckTask(activity,currentUserId,restaurant.getId(),"favorite",addToFavoritesButton, FavoritesFragment.getFavorites());
-        favTask.execute();
-
-        final ImageButton addToVisitedButton=viewHolder.addVisitedButton;
-        CheckTask visitedTask=new CheckTask(activity,currentUserId,restaurant.getId(),"visited",addToVisitedButton, VisitedFragment.getVisited(),
-                restaurant.getDistance());
+        final ImageButton addToVisitedButton = viewHolder.addVisitedButton;
+        CheckTask visitedTask = new CheckTask(activity, currentUserId, restaurant.getId(), "visited", addToVisitedButton,
+                VisitedFragment.getVisited(), restaurant.getDistance());
         visitedTask.execute();
 
+        final ImageButton addToFavoritesButton = viewHolder.addToFavoritesButton;
+        CheckTask favTask = new CheckTask(activity, currentUserId, restaurant.getId(), "favorite", addToFavoritesButton,
+                FavoritesFragment.getFavorites());
+        favTask.execute();
+
+        final ImageButton addToWishlistButton = viewHolder.addToWishlistButton;
+        CheckTask wishTask = new CheckTask(activity, currentUserId, restaurant.getId(), "wishlist", addToWishlistButton,
+                WishlistFragment.getWishlist());
+        wishTask.execute();
 
 
        /* addToWishlistButton.setOnClickListener(new View.OnClickListener() {
@@ -145,7 +145,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
             distanceTextView = itemView.findViewById(R.id.restaurantDistance);
             addToWishlistButton = itemView.findViewById(R.id.button_wishlist);
             addToFavoritesButton = itemView.findViewById(R.id.button_favorites);
-            addVisitedButton=itemView.findViewById(R.id.button_visited);
+            addVisitedButton = itemView.findViewById(R.id.button_visited);
         }
 
     }

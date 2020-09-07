@@ -32,7 +32,7 @@ public class CheckTask extends AsyncTask<Void, Void, Void> {
         this.type = type;
         this.button = button;
         this.list = list;
-        this.distance=null;
+        this.distance = null;
         db = Room.databaseBuilder(activity.getApplicationContext(), DB.class, "sample-db").build();
 
     }
@@ -51,7 +51,7 @@ public class CheckTask extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... voids) {
         while (!isCancelled()) {
-           count = db.daoAccess().count(userId, restaurantId, type);
+            count = db.daoAccess().count(userId, restaurantId, type);
             break;
         }
         return null;
@@ -63,14 +63,14 @@ public class CheckTask extends AsyncTask<Void, Void, Void> {
         if (count == 0) {
 
             //to add to favorites and wishlist it isn´t required to check if the user is close
-            if(type!="visited") {
+            if (type != "visited") {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         DBObject object = new DBObject(userId, restaurantId, type);
                         AddTask wlt = new AddTask(object, activity);
                         wlt.execute();
-                        if (type == "wishlist" ) {
+                        if (type == "wishlist") {
                             button.getBackground().setTint(activity.getResources().getColor(R.color.green));
                             Toast.makeText(activity, "Added to Wishlist", Toast.LENGTH_SHORT).show();
                         }
@@ -81,17 +81,15 @@ public class CheckTask extends AsyncTask<Void, Void, Void> {
 
                     }
                 });
-            }
-            else{
+            } else {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(distance>0.10){
+                        if (distance > 0.10) {
                             Toast.makeText(activity, "You need to be in a radius of 100 meters to do this operation", Toast.LENGTH_SHORT).show();
-                        }
-                        else{
+                        } else {
                             DBObject object = new DBObject(userId, restaurantId, type);
-                            AddTask at=new AddTask(object,activity);
+                            AddTask at = new AddTask(object, activity);
                             at.execute();
                             Toast.makeText(activity, "Marked as visited", Toast.LENGTH_SHORT).show();
                             button.getBackground().setTint(activity.getResources().getColor(R.color.green));

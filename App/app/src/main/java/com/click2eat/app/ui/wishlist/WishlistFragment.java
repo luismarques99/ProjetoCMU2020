@@ -58,8 +58,6 @@ public class WishlistFragment extends Fragment {
         mRecyclerView = mContentView.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContentView.getContext()));
         mRecyclerView.setAdapter(mAdapter);
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(context, DividerItemDecoration.VERTICAL);
-        mRecyclerView.addItemDecoration(itemDecoration);
 
         return mContentView;
     }

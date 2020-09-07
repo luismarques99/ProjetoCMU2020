@@ -124,8 +124,8 @@ public class LiveFragment extends Fragment {
                     SharedPreferences mSettings = PreferenceManager.getDefaultSharedPreferences(context);
                     String sort = mSettings.getString("sort", "rating");
                     String order = mSettings.getString("order", "desc");
-                    int radius=Integer.parseInt(mSettings.getString("radius","10"));
-                    radius=radius*1000;
+                    int radius = Integer.parseInt(mSettings.getString("radius", "10"));
+                    radius = radius * 1000;
 
                     RetrofitZomato.getApi().getNearbyRestaurants(location.getLatitude(), location.getLongitude(), 20, radius, sort, order,
                             getResources().getString(R.string.user_key)).enqueue(new Callback<SearchResponse>() {

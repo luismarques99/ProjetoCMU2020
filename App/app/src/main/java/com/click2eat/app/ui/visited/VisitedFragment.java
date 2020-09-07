@@ -47,9 +47,7 @@ public class VisitedFragment extends Fragment {
         mAdapter = new SimpleAdapter(context, visited,getActivity(),mAuth.getCurrentUser().getUid());
         LoadListTask lwt=new LoadListTask(getActivity(),visited,mAdapter,mAuth.getCurrentUser().getUid(),"visited");
         lwt.execute();
-
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,8 +55,6 @@ public class VisitedFragment extends Fragment {
         mRecyclerView = mContentView.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContentView.getContext()));
         mRecyclerView.setAdapter(mAdapter);
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(context, DividerItemDecoration.VERTICAL);
-        mRecyclerView.addItemDecoration(itemDecoration);
 
         return mContentView;
     }

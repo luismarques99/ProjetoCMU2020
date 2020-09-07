@@ -7,7 +7,7 @@
     tools:context=".ui.live.LiveFragment">
 
     <include
-        android:id="@+id/app_bar"
+        android:id="@+id/list_restaurants"
         layout="@layout/list_restaurants"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

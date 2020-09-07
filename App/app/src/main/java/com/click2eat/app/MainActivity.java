@@ -24,7 +24,11 @@ public class MainActivity extends AppCompatActivity implements OnRestaurantClick
     private FirebaseAuth mAuth;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
-    private NavController navController;
+    private static NavController navController;
+
+    public static NavController getNavController() {
+        return navController;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,19 +47,8 @@ public class MainActivity extends AppCompatActivity implements OnRestaurantClick
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        SendNotificationTask nt=new SendNotificationTask(this,currentUser.getUid(),this);
+        SendNotificationTask nt = new SendNotificationTask(this, currentUser.getUid(), this);
         nt.execute();
-
-        // LiveFragment
-//        LiveFragment liveFragment = new LiveFragment();
-//        Bundle args = new Bundle();
-//        args.putString("userId", currentUser.getUid());
-//        liveFragment.setArguments(args);
-//
-//        fragmentTransaction = fragmentManager.beginTransaction();
-//        fragmentTransaction.replace(R.id.nav_host_fragment, liveFragment);
-//        fragmentTransaction.addToBackStack(null);
-//        fragmentTransaction.commit();
     }
 
     @Override
@@ -72,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements OnRestaurantClick
                 return true;
 
             case R.id.options_settings:
-                Intent goToSettings=new Intent(MainActivity.this,SettingsActivity.class);
+                Intent goToSettings = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(goToSettings);
                 return true;
 
@@ -87,15 +80,8 @@ public class MainActivity extends AppCompatActivity implements OnRestaurantClick
 
     @Override
     public void onRestaurantClicked(String id) {
-//        RestaurantDetailsFragment restaurantDetails = new RestaurantDetailsFragment();
         Bundle args = new Bundle();
         args.putString("id", id);
-//        restaurantDetails.setArguments(args);
-//        fragmentManager = getSupportFragmentManager();
-//        fragmentTransaction = fragmentManager.beginTransaction();
-//        fragmentTransaction.replace(R.id.nav_host_fragment, restaurantDetails);
-//        fragmentTransaction.addToBackStack(null);
-//        fragmentTransaction.commit();
         navController.navigate(R.id.restaurant_details, args);
     }
 

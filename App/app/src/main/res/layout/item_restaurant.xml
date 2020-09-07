@@ -93,13 +93,14 @@
                 android:id="@+id/button_visited"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/ic_menu_favorites"
+                android:background="@drawable/ic_menu_visited"
                 android:backgroundTint="@color/colorPrimaryDark"/>
 
             <ImageButton
                 android:id="@+id/button_favorites"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:layout_marginStart="10dp"
                 android:background="@drawable/ic_menu_favorites"
                 android:backgroundTint="@color/colorPrimaryDark"/>
 
@@ -107,7 +108,7 @@
                 android:id="@+id/button_wishlist"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="10dp"
                 android:background="@drawable/ic_menu_wishlist"
                 android:backgroundTint="@color/colorPrimaryDark"/>
 

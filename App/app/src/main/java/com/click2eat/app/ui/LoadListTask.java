@@ -2,10 +2,13 @@ package com.click2eat.app.ui;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 
 import androidx.room.Room;
 
+import com.click2eat.app.MainActivity;
+import com.click2eat.app.R;
 import com.click2eat.app.database.DB;
 
 import java.util.List;
@@ -41,7 +44,15 @@ public class LoadListTask extends AsyncTask<Void, Void, Void> {
     protected void onPostExecute(Void aVoid) {
         if (temp.length==0) {
             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-            builder.setMessage("You still haven´t add anything");
+            builder.setTitle("You haven't added anything yet!");
+            builder.setMessage("Do you want to add some restaurants now?");
+            builder.setPositiveButton("Let's do it", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    MainActivity.getNavController().navigate(R.id.navigation_live);
+                }
+            });
+            builder.setNegativeButton("Nope", null);
             AlertDialog mDialog = builder.create();
             mDialog.show();
         } else {

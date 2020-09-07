@@ -1,5 +1,6 @@
 package com.click2eat.app.ui;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.click2eat.app.R;
+import com.click2eat.app.RetrofitZomato;
 import com.click2eat.app.ZomatoApi;
 import com.click2eat.app.models.Restaurant_;
 import com.click2eat.app.ui.favorites.FavoritesFragment;
@@ -39,15 +41,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.WishlistViewHolder> {
     private Context mContext;
     private List<String> mRestaurantIds;
-    private Activity act;
+    private Activity activity;
     private String currentUserId;
     private FusedLocationProviderClient mFusedLocationClient;
 
     public SimpleAdapter(Context context, List<String> ids, Activity activity, String currentUser) {
-        mRestaurantIds=ids;
+        mRestaurantIds = ids;
         mContext = context;
-        act=activity;
-        currentUserId=currentUser;
+        this.activity = activity;
+        currentUserId = currentUser;
     }
 
 
@@ -69,13 +71,14 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.WishlistVi
         // Get the data model based on position
         final String id = mRestaurantIds.get(position);
 
-        getApi().getRestaurantDetails(Integer.parseInt(id), "75be9f9e2239fe637bf9cb1b46979d91")
+        RetrofitZomato.getApi().getRestaurantDetails(Integer.parseInt(id), activity.getResources().getString(R.string.user_key))
                 .enqueue(new Callback<Restaurant_>() {
+                    @SuppressLint("MissingPermission")
                     @Override
                     public void onResponse(Call<Restaurant_> call, final Response<Restaurant_> response) {
-                        final TextView name=viewHolder.nameTextView;
+                        final TextView name = viewHolder.nameTextView;
                         name.setText(response.body().getName());
-                        final TextView rating=viewHolder.ratingTextView;
+                        final TextView rating = viewHolder.ratingTextView;
                         rating.setText(response.body().getUserRating().getAggregateRating());
 
                        /* remove.setOnClickListener(new View.OnClickListener() {
@@ -87,11 +90,13 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.WishlistVi
                             }
                         });*/
                         final ImageButton wishlistButton = viewHolder.wishlistButton;
-                        CheckTask wishTask=new CheckTask(act,currentUserId,id,"wishlist",wishlistButton, WishlistFragment.getWishlist());
+                        CheckTask wishTask = new CheckTask(activity, currentUserId, id, "wishlist", wishlistButton,
+                                WishlistFragment.getWishlist());
                         wishTask.execute();
 
                         final ImageButton favoritesButton = viewHolder.favoritesButton;
-                        CheckTask favTask=new CheckTask(act,currentUserId,id,"favorite",favoritesButton, FavoritesFragment.getFavorites());
+                        CheckTask favTask = new CheckTask(activity, currentUserId, id, "favorite", favoritesButton,
+                                FavoritesFragment.getFavorites());
                         favTask.execute();
 
                         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -101,51 +106,51 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.WishlistVi
                             }
                         });
 
-                        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(act);
-                        mFusedLocationClient.getLastLocation().addOnSuccessListener(act, new OnSuccessListener<Location>() {
+                        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
+                        mFusedLocationClient.getLastLocation().addOnSuccessListener(activity, new OnSuccessListener<Location>() {
                             @Override
                             public void onSuccess(final Location location) {
                                 if (location != null) {
-                                    final TextView mDistance=viewHolder.distanceTextView;
-                                    double distance= calculateDistance(Double.parseDouble(response.body().getLocation().getLatitude()),
+                                    final TextView mDistance = viewHolder.distanceTextView;
+                                    double distance = calculateDistance(Double.parseDouble(response.body().getLocation().getLatitude()),
                                             Double.parseDouble(response.body().getLocation().getLongitude()),
-                                            location.getLatitude(),location.getLongitude());
-                                    distance=(double) Math.round(distance * 100d) / 100d;
-                                    mDistance.setText(distance+"Km");
-                                    final ImageButton visitedButton=viewHolder.visitedButton;
-                                    CheckTask visitedTask=new CheckTask(act,currentUserId,id,"visited",visitedButton, VisitedFragment.getVisited(),
-                                           distance);
+                                            location.getLatitude(), location.getLongitude());
+                                    distance = (double) Math.round(distance * 100d) / 100d;
+                                    mDistance.setText(distance + "Km");
+                                    final ImageButton visitedButton = viewHolder.visitedButton;
+                                    CheckTask visitedTask = new CheckTask(activity, currentUserId, id, "visited", visitedButton,
+                                            VisitedFragment.getVisited(),
+                                            distance);
                                     visitedTask.execute();
                                 }
                             }
-                        }).addOnFailureListener(act, new OnFailureListener() {
+                        }).addOnFailureListener(activity, new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(act, "It wasn´t possible to determine your location", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(activity, "It wasn't possible to determine your location", Toast.LENGTH_SHORT).show();
                             }
                         });
-
-
 
 
                     }
 
                     @Override
                     public void onFailure(Call<Restaurant_> call, Throwable t) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(act);
-                        builder.setMessage("Couldn´t load restaurant details");
+                        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                        builder.setMessage("Couldn't load restaurant details");
                         AlertDialog mDialog = builder.create();
                         mDialog.show();
                     }
                 });
 
     }
+
     @Override
     public int getItemCount() {
         return mRestaurantIds.size();
     }
 
-    private double calculateDistance(double latRestaurant, double lonRestaurant,double myLat,double myLon) {
+    private double calculateDistance(double latRestaurant, double lonRestaurant, double myLat, double myLon) {
         if ((myLat == latRestaurant) && (myLon == lonRestaurant)) {
             return 0;
         } else {
@@ -160,19 +165,6 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.WishlistVi
         }
     }
 
-
-    private Retrofit getRetrofit() {
-        return new Retrofit.Builder()
-                .baseUrl("https://developers.zomato.com/api/v2.1/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-    }
-
-    private ZomatoApi getApi() {
-        return getRetrofit().create(ZomatoApi.class);
-    }
-
-
     public class WishlistViewHolder extends RecyclerView.ViewHolder {
         public TextView nameTextView;
         public TextView ratingTextView;
@@ -184,11 +176,11 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.WishlistVi
         public WishlistViewHolder(View itemView) {
             super(itemView);
             nameTextView = itemView.findViewById(R.id.restaurantName);
-            ratingTextView=itemView.findViewById(R.id.restaurantRating);
-            distanceTextView=itemView.findViewById(R.id.restaurantDistance);
-            wishlistButton=itemView.findViewById(R.id.button_wishlist);
-            favoritesButton=itemView.findViewById(R.id.button_favorites);
-            visitedButton=itemView.findViewById(R.id.button_visited);
+            ratingTextView = itemView.findViewById(R.id.restaurantRating);
+            distanceTextView = itemView.findViewById(R.id.restaurantDistance);
+            wishlistButton = itemView.findViewById(R.id.button_wishlist);
+            favoritesButton = itemView.findViewById(R.id.button_favorites);
+            visitedButton = itemView.findViewById(R.id.button_visited);
 
 
         }
