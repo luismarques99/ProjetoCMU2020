@@ -68,23 +68,16 @@ public class RestaurantDetailsFragment extends Fragment implements View.OnClickL
                 .enqueue(new Callback<Restaurant_>() {
                     @Override
                     public void onResponse(Call<Restaurant_> call, Response<Restaurant_> response) {
-                        mRestaurantName.setText("Name : " + response.body().getName());
-                        mRestaurantAddress.setText("Address : " + response.body().getLocation().getAddress());
-                        mRestaurantRating.setText("Rating: " + response.body().getUserRating().getAggregateRating() + ", " + response.body().getUserRating().getRatingText());
-                        mVotes.setText("Number of votes : " + response.body().getUserRating().getVotes());
-                        mAveragePrice.setText("Average price for two : " + response.body().getAverageCostForTwo() + response.body().getCurrency());
-                        mTimings.setText("Timings : " + response.body().getTimings());
-                        mPhoneNumbers.setText("Contacts : " + response.body().getPhoneNumbers());
-                        mCuisines.setText("Cuisines : " + response.body().getCuisines());
+                        mRestaurantName.setText(response.body().getName());
+                        mRestaurantAddress.setText(response.body().getLocation().getAddress());
+                        mRestaurantRating.setText(response.body().getUserRating().getAggregateRating() + ", " + response.body().getUserRating().getRatingText());
+                        mVotes.setText(response.body().getUserRating().getVotes());
+                        mAveragePrice.setText(response.body().getAverageCostForTwo() + response.body().getCurrency());
+                        mTimings.setText(response.body().getTimings());
+                        mPhoneNumbers.setText(response.body().getPhoneNumbers());
+                        mCuisines.setText(response.body().getCuisines());
                         List<String> establishmentType = response.body().getEstablishment();
-
-                        String types = "";
-                        for (int i = 0; i < establishmentType.size(); i++) {
-                            types += establishmentType.get(i) + "\n";
-                        }
-
-                        mEstablishment.setText("Establishment type : " + types);
-
+                        mEstablishment.setText(establishmentType.size() != 0 ? establishmentType.get(0) : "N/a");
                     }
 
                     @Override
@@ -115,7 +108,7 @@ public class RestaurantDetailsFragment extends Fragment implements View.OnClickL
         if (id == R.id.seeMap) {
 //            Intent mapIntent = new Intent(getActivity(), MapActivity.class);
 //            startActivity(mapIntent);
-        } else if(id == R.id.button_go_back){
+        } else if (id == R.id.button_go_back) {
             getActivity().onBackPressed();
         }
     }

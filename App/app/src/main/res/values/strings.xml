@@ -29,6 +29,17 @@
     // API
     <string name="user_key">75be9f9e2239fe637bf9cb1b46979d91</string>
 
+    // Restaurant
+    <string name="restaurant_name">Name:</string>
+    <string name="restaurant_type">Type:</string>
+    <string name="restaurant_address">Address:</string>
+    <string name="restaurant_rating">Rating:</string>
+    <string name="restaurant_votes">Votes:</string>
+    <string name="restaurant_average_cost">Average cost for two:</string>
+    <string name="restaurant_timings">Timings:</string>
+    <string name="restaurant_contacts">Contacts:</string>
+    <string name="restaurant_cuisines">Cuisines:</string>
+
 <!--    <string name="title_activity_login">LoginActivity</string>-->
 <!--    <string name="prompt_email">Email</string>-->
 <!--    <string name="prompt_password">Password</string>-->
