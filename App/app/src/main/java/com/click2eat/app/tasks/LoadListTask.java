@@ -1,4 +1,4 @@
-package com.click2eat.app.ui;
+package com.click2eat.app.tasks;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -10,13 +10,14 @@ import androidx.room.Room;
 import com.click2eat.app.MainActivity;
 import com.click2eat.app.R;
 import com.click2eat.app.database.DB;
+import com.click2eat.app.ui.SimpleAdapter;
 
 import java.util.List;
 
 public class LoadListTask extends AsyncTask<Void, Void, Void> {
     private DB db;
     private Activity activity;
-    private List<String>list;
+    private List<String> list;
     private String[] temp;
     private SimpleAdapter adapter;
     private String id;
@@ -42,7 +43,7 @@ public class LoadListTask extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected void onPostExecute(Void aVoid) {
-        if (temp.length==0) {
+        if (temp.length == 0) {
             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
             builder.setTitle("You haven't added anything yet!");
             builder.setMessage("Do you want to add some restaurants now?");

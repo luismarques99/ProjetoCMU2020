@@ -22,7 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.click2eat.app.R;
-import com.click2eat.app.RetrofitZomato;
+import com.click2eat.app.api.RetrofitZomato;
 import com.click2eat.app.ui.OnRestaurantClickedListener;
 import com.click2eat.app.ui.RestaurantAdapter;
 import com.click2eat.app.models.Restaurant;
@@ -66,7 +66,7 @@ public class LiveFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         restaurantsList = new ArrayList<>();
         getLastLocation();
-        mAdapter = new RestaurantAdapter(context, restaurantsList, getActivity());
+        mAdapter = new RestaurantAdapter(restaurantsList, getActivity());
     }
 
     @Override

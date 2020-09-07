@@ -19,14 +19,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.click2eat.app.R;
-import com.click2eat.app.RetrofitZomato;
+import com.click2eat.app.api.RetrofitZomato;
 import com.click2eat.app.ui.OnRestaurantClickedListener;
 import com.click2eat.app.ui.RestaurantAdapter;
 import com.click2eat.app.models.Restaurant;
@@ -73,7 +72,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener {
         context = getContext();
         mAuth = FirebaseAuth.getInstance();
         restaurantsList = new ArrayList<>();
-        mAdapter = new RestaurantAdapter(context, restaurantsList, getActivity());
+        mAdapter = new RestaurantAdapter(restaurantsList, getActivity());
     }
 
     @Override

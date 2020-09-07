@@ -1,4 +1,4 @@
-package com.click2eat.app.ui;
+package com.click2eat.app.tasks;
 
 import android.app.Activity;
 import android.os.AsyncTask;
@@ -15,13 +15,11 @@ import java.util.List;
 public class RemoveTask extends AsyncTask<Void, Void, Void> {
     private DBObject deletedRestaurant;
     private DB db;
-    private Activity activity;
     private List<String> list;
     private String type;
 
     public RemoveTask(DBObject deletedRestaurant, Activity activity, List<String> list, String type) {
         this.deletedRestaurant = deletedRestaurant;
-        this.activity = activity;
         this.db = Room.databaseBuilder(activity.getApplicationContext(), DB.class, "sample-db").build();
         this.list = list;
         this.type = type;

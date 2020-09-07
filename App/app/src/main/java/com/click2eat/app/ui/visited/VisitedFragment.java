@@ -8,12 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.click2eat.app.R;
-import com.click2eat.app.ui.LoadListTask;
+import com.click2eat.app.tasks.LoadListTask;
 import com.click2eat.app.ui.OnRestaurantClickedListener;
 import com.click2eat.app.ui.SimpleAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -44,7 +43,7 @@ public class VisitedFragment extends Fragment {
         context = getContext();
         mAuth = FirebaseAuth.getInstance();
         visited = new ArrayList<>();
-        mAdapter = new SimpleAdapter(context, visited,getActivity(),mAuth.getCurrentUser().getUid());
+        mAdapter = new SimpleAdapter( visited,getActivity(),mAuth.getCurrentUser().getUid());
         LoadListTask lwt=new LoadListTask(getActivity(),visited,mAdapter,mAuth.getCurrentUser().getUid(),"visited");
         lwt.execute();
     }

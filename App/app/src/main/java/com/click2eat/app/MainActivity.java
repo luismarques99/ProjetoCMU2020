@@ -6,14 +6,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.click2eat.app.ui.OnRestaurantClickedListener;
-import com.click2eat.app.ui.SendNotificationTask;
+import com.click2eat.app.tasks.SendNotificationTask;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
@@ -22,8 +20,6 @@ import androidx.appcompat.widget.Toolbar;
 public class MainActivity extends AppCompatActivity implements OnRestaurantClickedListener {
 
     private FirebaseAuth mAuth;
-    private FragmentManager fragmentManager;
-    private FragmentTransaction fragmentTransaction;
     private static NavController navController;
 
     public static NavController getNavController() {
